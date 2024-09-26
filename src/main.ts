@@ -147,7 +147,7 @@ export class TimerSwitch extends utils.Adapter {
     private async onMessage(obj: ioBroker.Message): Promise<void> {
         if (typeof obj === "object" && obj.message) {
             try {
-                this.log.info("obj: " + JSON.stringify(obj));
+                this.log.debug("obj: " + JSON.stringify(obj));
                 if (this.messageService) {
                     await this.messageService.handleMessage(obj);
                 } else {
@@ -356,7 +356,7 @@ export class TimerSwitch extends utils.Adapter {
      */
     private async setSendTo(data: string): Promise<void> {
         const send = JSON.parse(data);
-        this.log.info(JSON.stringify(send));
+        this.log.debug(JSON.stringify(send));
         try {
             if (this.messageService) {
                 await this.messageService.handleMessage(send);
