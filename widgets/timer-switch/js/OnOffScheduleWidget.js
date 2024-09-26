@@ -167,6 +167,7 @@
 
         onScheduleDataChange(newData) {
             console.log("onScheduleDataChange");
+            if (newData == null) return;
             this.name = newData.name;
             this.triggers = newData.triggers;
         }

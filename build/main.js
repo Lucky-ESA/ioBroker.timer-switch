@@ -159,7 +159,7 @@ class TimerSwitch extends utils.Adapter {
   async onMessage(obj) {
     if (typeof obj === "object" && obj.message) {
       try {
-        this.log.info("obj: " + JSON.stringify(obj));
+        this.log.debug("obj: " + JSON.stringify(obj));
         if (this.messageService) {
           await this.messageService.handleMessage(obj);
         } else {
@@ -358,7 +358,7 @@ class TimerSwitch extends utils.Adapter {
    */
   async setSendTo(data) {
     const send = JSON.parse(data);
-    this.log.info(JSON.stringify(send));
+    this.log.debug(JSON.stringify(send));
     try {
       if (this.messageService) {
         await this.messageService.handleMessage(send);

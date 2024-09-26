@@ -25,6 +25,7 @@ export class IoBrokerStateService implements StateService {
         this.checkTime = Date.now();
         this.adapter.log.debug(`DIFF: ${diffTime}`);
         if (this.adapter.config.switch_delay > 0 && this.adapter.config.switch_delay > diffTime) {
+            this.adapter.log.debug(`Start Sleep`);
             await this.delay(this.adapter.config.switch_delay);
         }
         this.checkId(id);

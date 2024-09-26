@@ -40,7 +40,7 @@ class IoBrokerStateService {
     var _a;
     const diffTime = Date.now() - this.checkTime;
     this.checkTime = Date.now();
-    this.adapter.log.info(`DIFF: ${diffTime}`);
+    this.adapter.log.debug(`DIFF: ${diffTime}`);
     if (this.adapter.config.switch_delay > 0 && this.adapter.config.switch_delay > diffTime) {
       await this.delay(this.adapter.config.switch_delay);
     }
