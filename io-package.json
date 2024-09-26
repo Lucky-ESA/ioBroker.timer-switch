@@ -43,8 +43,14 @@
             "uk": "Плануйте власні розклади",
             "zh-cn": "规划自己的日程安排"
         },
-        "authors": ["Lucky_ESA <github@luckyskills.de>"],
-        "keywords": ["schedule", "time", "switch"],
+        "authors": [
+            "Lucky_ESA <github@luckyskills.de>"
+        ],
+        "keywords": [
+            "schedule",
+            "time",
+            "switch"
+        ],
         "licenseInformation": {
             "type": "free",
             "license": "MIT"
