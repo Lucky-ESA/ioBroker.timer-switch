@@ -13,9 +13,13 @@ let timeSwitchDic;
 $.get("../timer-switch.admin/words.js", function (script) {
     let translation = script.substring(script.indexOf("{"), script.length);
     translation = translation.substring(0, translation.lastIndexOf(";"));
-    timeSwitchDic = JSON.parse(translation);
-    $.extend(systemDictionary, iobSystemDic);
-    $.extend(systemDictionary, timeSwitchDic);
+    try {
+        timeSwitchDic = JSON.parse(translation);
+        $.extend(systemDictionary, iobSystemDic);
+        $.extend(systemDictionary, timeSwitchDic);
+    } catch (e) {
+        console.log(`Translate: ${e}`);
+    }
 });
 
 // export vis binds for widget
