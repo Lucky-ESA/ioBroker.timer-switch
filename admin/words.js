@@ -11,6 +11,7 @@ systemDictionary = {
         it: "Aggiungi pianificazione On / Off",
         es: "Agregar horario de encendido / apagado",
         pl: "Dodaj harmonogram włączania / wyłączania",
+        uk: "Графік роботи",
         "zh-cn": "添加开/关时间表",
     },
     Friday: {
@@ -23,6 +24,7 @@ systemDictionary = {
         it: "Venerdì",
         es: "viernes",
         pl: "piątek",
+        uk: "П'ятниця",
         "zh-cn": "星期五",
     },
     Monday: {
@@ -35,6 +37,7 @@ systemDictionary = {
         it: "Lunedi",
         es: "lunes",
         pl: "poniedziałek",
+        uk: "понеділок",
         "zh-cn": "星期一",
     },
     Saturday: {
@@ -47,6 +50,7 @@ systemDictionary = {
         it: "Sabato",
         es: "sábado",
         pl: "sobota",
+        uk: "Субота",
         "zh-cn": "星期六",
     },
     Sunday: {
@@ -59,6 +63,7 @@ systemDictionary = {
         it: "Domenica",
         es: "domingo",
         pl: "niedziela",
+        uk: "неділя",
         "zh-cn": "星期日",
     },
     Thursday: {
@@ -71,6 +76,7 @@ systemDictionary = {
         it: "giovedi",
         es: "jueves",
         pl: "czwartek",
+        uk: "четвер",
         "zh-cn": "星期四",
     },
     Tuesday: {
@@ -83,6 +89,7 @@ systemDictionary = {
         it: "martedì",
         es: "martes",
         pl: "wtorek",
+        uk: "вівторок",
         "zh-cn": "星期二",
     },
     Wednesday: {
@@ -95,6 +102,7 @@ systemDictionary = {
         it: "mercoledì",
         es: "miércoles",
         pl: "środa",
+        uk: "Середа",
         "zh-cn": "星期三",
     },
     addAstroTrigger: {
@@ -107,6 +115,7 @@ systemDictionary = {
         it: "Astro trigger",
         es: "Astro gatillo",
         pl: "Spust Astro",
+        uk: "Астро тригер",
         "zh-cn": "天文触发器",
     },
     addCondition: {
@@ -119,6 +128,7 @@ systemDictionary = {
         it: "Aggiungi condizione",
         es: "Agregar condición",
         pl: "Dodaj warunek",
+        uk: "Додайте умову",
         "zh-cn": "添加条件",
     },
     addTimeTrigger: {
@@ -131,6 +141,7 @@ systemDictionary = {
         it: "Innesco temporale",
         es: "Disparador de tiempo",
         pl: "Wyzwalacz czasowy",
+        uk: "Тригер часу",
         "zh-cn": "时间触发",
     },
     addTrigger: {
@@ -143,6 +154,7 @@ systemDictionary = {
         it: "Aggiungi trigger",
         es: "Agregar disparador",
         pl: "Dodaj wyzwalacz",
+        uk: "Додати тригер",
         "zh-cn": "添加触发器",
     },
     allOff: {
@@ -155,6 +167,7 @@ systemDictionary = {
         it: "Tutto fuori",
         es: "Todo apagado",
         pl: "Wszystko wyłączone",
+        uk: "Все вимкнено",
         "zh-cn": "全部关闭",
     },
     allOn: {
@@ -167,6 +180,7 @@ systemDictionary = {
         it: "Tutto acceso",
         es: "Todo en",
         pl: "Wszystko włączone",
+        uk: "Все включено",
         "zh-cn": "所有",
     },
     automaticSwitchingEnabled: {
@@ -179,6 +193,7 @@ systemDictionary = {
         it: "Commutazione automatica abilitata",
         es: "Conmutación automática habilitada",
         pl: "Automatyczne przełączanie włączone",
+        uk: "Увімкнено автоматичне перемикання",
         "zh-cn": "启用自动切换",
     },
     boolean: {
@@ -191,6 +206,7 @@ systemDictionary = {
         it: "booleano",
         es: "booleano",
         pl: "boolean",
+        uk: "логічний",
         "zh-cn": "布尔值",
     },
     cancelEdit: {
@@ -203,6 +219,7 @@ systemDictionary = {
         it: "Annulla modifica",
         es: "Cancelar edición",
         pl: "Anuluj edycję",
+        uk: "Скасувати редагування",
         "zh-cn": "取消编辑",
     },
     condition: {
@@ -215,6 +232,7 @@ systemDictionary = {
         it: "Condizione",
         es: "Condición",
         pl: "Stan: schorzenie",
+        uk: "Хвороба",
         "zh-cn": "健康）状况",
     },
     conditionStateAlias: {
@@ -227,6 +245,7 @@ systemDictionary = {
         it: "Alias ​​di stato della condizione",
         es: "Alias ​​de estado de condición",
         pl: "Alias ​​stanu warunku",
+        uk: "Псевдонім стану стану",
         "zh-cn": "条件状态别名",
     },
     conditionStateId: {
@@ -239,6 +258,7 @@ systemDictionary = {
         it: "ID stato condizione",
         es: "Id. De estado de condición",
         pl: "Identyfikator stanu warunku",
+        uk: "Ідентифікатор стану стану",
         "zh-cn": "条件状态编号",
     },
     oid: {
@@ -251,7 +271,7 @@ systemDictionary = {
         it: "Stato di condizione id (solo VIS-2)",
         es: "Estado de condición id (sólo VIS-2)",
         pl: "Stan stanu warunku id (tylko VIS-2)",
-        uk: "Стан id (VIS-2 тільки)",
+        uk: "Ідентифікатор стану стану (лише VIS-2)",
         "zh-cn": "条件状态 id(只有VIS-2)",
     },
     conditionStatesCount: {
@@ -264,6 +284,7 @@ systemDictionary = {
         it: "Conteggio degli stati di condizione",
         es: "Recuento de estados de condición",
         pl: "Liczba stanów warunkowych",
+        uk: "Підрахунок умовних станів",
         "zh-cn": "条件状态计数",
     },
     currentValue: {
@@ -276,6 +297,7 @@ systemDictionary = {
         it: "Valore corrente",
         es: "Valor actual",
         pl: "Aktualna wartość",
+        uk: "Поточне значення",
         "zh-cn": "当前值",
     },
     dataId: {
@@ -288,6 +310,7 @@ systemDictionary = {
         it: "Pianifica ID dati",
         es: "Programar ID de datos",
         pl: "Zaplanuj identyfikator danych",
+        uk: "Ідентифікатор даних розкладу",
         "zh-cn": "时间表资料编号",
     },
     oid6: {
@@ -300,6 +323,7 @@ systemDictionary = {
         it: "Pianifica ID dati (solo VIS-2)",
         es: "Programar ID de datos (sólo VIS-2)",
         pl: "Zaplanuj identyfikator danych (tylko VIS-2)",
+        uk: "Ідентифікатор даних розкладу (лише VIS-2)",
         "zh-cn": "时间表资料编号(仅限VIS-2)",
     },
     oid8: {
@@ -312,6 +336,7 @@ systemDictionary = {
         it: "Programma abilitare id (solo VIS-2)",
         es: "Horario de habilitación id (sólo VIS-2)",
         pl: "Harmonogram włącza id (tylko VIS-2)",
+        uk: "Ідентифікатор увімкнення розкладу (лише VIS-2)",
         "zh-cn": "时刻表启用 ID(仅限VIS-2)",
     },
     editName: {
@@ -324,6 +349,7 @@ systemDictionary = {
         it: "Modifica nome",
         es: "Editar nombre",
         pl: "Zmień imię",
+        uk: "Редагувати назву",
         "zh-cn": "编辑名称",
     },
     editTrigger: {
@@ -336,6 +362,7 @@ systemDictionary = {
         it: "Modifica trigger",
         es: "Editar disparador",
         pl: "Edytuj wyzwalacz",
+        uk: "Редагувати тригер",
         "zh-cn": "编辑触发器",
     },
     enabled: {
@@ -348,6 +375,7 @@ systemDictionary = {
         it: "Abilitato",
         es: "Habilitado",
         pl: "Włączone",
+        uk: "Увімкнено",
         "zh-cn": "已启用",
     },
     equals: {
@@ -360,6 +388,7 @@ systemDictionary = {
         it: "È uguale a",
         es: "Igual",
         pl: "Równa się",
+        uk: "Дорівнює",
         "zh-cn": "等于",
     },
     equalsNot: {
@@ -372,6 +401,7 @@ systemDictionary = {
         it: "Non è uguale",
         es: "Es igual a no",
         pl: "Nie równa się",
+        uk: "Не дорівнює",
         "zh-cn": "不等于",
     },
     false: {
@@ -384,6 +414,7 @@ systemDictionary = {
         it: "falso",
         es: "falso",
         pl: "fałszywe",
+        uk: "помилковий",
         "zh-cn": "假",
     },
     inputAstroTime: {
@@ -396,6 +427,7 @@ systemDictionary = {
         it: "Tempo di Astro:",
         es: "Tiempo astro:",
         pl: "Czas Astro:",
+        uk: "Астрочас:",
         "zh-cn": "太空时间：",
     },
     inputShiftInMinutes: {
@@ -408,6 +440,7 @@ systemDictionary = {
         it: "Spostamento in pochi minuti:",
         es: "Turno en minutos:",
         pl: "Zmiana w minutach:",
+        uk: "Зміна за хвилини:",
         "zh-cn": "上班时间：",
     },
     manualSwitching: {
@@ -420,6 +453,7 @@ systemDictionary = {
         it: "Commutazione manuale",
         es: "Cambio manual",
         pl: "Przełączanie ręczne",
+        uk: "Ручне перемикання",
         "zh-cn": "手动切换",
     },
     name: {
@@ -432,6 +466,7 @@ systemDictionary = {
         it: "Nome",
         es: "Nombre",
         pl: "Imię",
+        uk: "Ім'я",
         "zh-cn": "名称",
     },
     needToEnterValidNumberOff: {
@@ -444,6 +479,7 @@ systemDictionary = {
         it: "Inserisci un numero valido per il valore disattivato quando type è number!",
         es: "¡Ingrese un número válido para el valor apagado cuando type es number!",
         pl: "Wprowadź poprawny numer wyłączonej wartości, gdy typ jest liczbą!",
+        uk: "Введіть дійсне число для вимкненого значення, якщо типом є число!",
         "zh-cn": "输入数字时，输入一个有效的数字作为关闭值！",
     },
     needToEnterValidNumberOn: {
@@ -456,6 +492,7 @@ systemDictionary = {
         it: "Inserisci un numero valido per il valore attivato quando type è number!",
         es: "¡Ingrese un número válido para el valor activado cuando type es number!",
         pl: "Wprowadź prawidłową liczbę dla włączonej wartości, gdy typ jest liczbą!",
+        uk: "Введіть дійсне число для ввімкненого значення, якщо типом є число!",
         "zh-cn": "当类型为数字时，输入有效的数字作为接通值！",
     },
     needToEnterValidStringValue: {
@@ -468,6 +505,7 @@ systemDictionary = {
         it: "Il valore On / Off non può essere vuoto quando il tipo è stringa",
         es: "On / Offvalue no puede estar vacío cuando type es string",
         pl: "Wartość On / Offvalue nie może być pusta, gdy typ jest łańcuchem",
+        uk: "Значення On/Off не може бути пустим, якщо типом є рядок!",
         "zh-cn": "类型为字符串时，On / Offvalue不能为空",
     },
     needToSelectDataId: {
@@ -480,6 +518,7 @@ systemDictionary = {
         it: "Seleziona un ID dati di pianificazione per utilizzare il widget!",
         es: "¡Seleccione una identificación de datos de programación para usar el widget!",
         pl: "Wybierz identyfikator danych harmonogramu, aby użyć widgetu!",
+        uk: "Виберіть ідентифікатор даних розкладу, щоб використовувати віджет!",
         "zh-cn": "选择一个计划数据ID以使用小部件！",
     },
     needToSelectStateId: {
@@ -492,6 +531,7 @@ systemDictionary = {
         it: "Seleziona almeno un ID stato commutato per utilizzare il widget!",
         es: "¡Seleccione al menos un ID de estado cambiado para usar el widget!",
         pl: "Wybierz przynajmniej jeden identyfikator stanu przełączania, aby użyć widżetu!",
+        uk: "Виберіть хоча б один ідентифікатор переключеного стану, щоб використовувати віджет!",
         "zh-cn": "选择至少一个切换状态ID以使用小部件！",
     },
     needToSelectValidDataId: {
@@ -504,6 +544,7 @@ systemDictionary = {
         it: "Selezionare un ID dati di pianificazione valido (con il modello 'time-switch.0.onoff. *. Data')!",
         es: "¡Seleccione una identificación de datos de programación válida (con el patrón 'time-switch.0.onoff. *. Data')!",
         pl: "Wybierz prawidłowy identyfikator danych harmonogramu (ze wzorcem „time-switch.0.onoff. *. Data”)!",
+        uk: "Виберіть дійсний ідентифікатор даних розкладу (із шаблоном 'time-switch.0.onoff.*.data')!",
         "zh-cn": "选择一个有效的计划数据ID（使用模式“ time-switch.0.onoff。*。data”）！",
     },
     number: {
@@ -516,6 +557,7 @@ systemDictionary = {
         it: "numero",
         es: "número",
         pl: "numer",
+        uk: "номер",
         "zh-cn": "数",
     },
     off: {
@@ -528,6 +570,7 @@ systemDictionary = {
         it: "via",
         es: "Apagado",
         pl: "Poza",
+        uk: "Вимкнено",
         "zh-cn": "关",
     },
     offValue: {
@@ -540,9 +583,22 @@ systemDictionary = {
         it: "Valore per spento",
         es: "Valor para apagado",
         pl: "Wartość wyłączona",
+        uk: "Значення для викл",
         "zh-cn": "折价",
     },
-    on: { en: "On", de: "an", ru: "На", pt: "Em", nl: "Aan", fr: "Sur", it: "Su", es: "En", pl: "Na", "zh-cn": "上" },
+    on: {
+        en: "On",
+        de: "an",
+        ru: "На",
+        pt: "Em",
+        nl: "Aan",
+        fr: "Sur",
+        it: "Su",
+        es: "En",
+        pl: "Na",
+        uk: "Увімкнено",
+        "zh-cn": "上",
+    },
     onValue: {
         en: "Value for on",
         de: "Wert für an",
@@ -553,6 +609,7 @@ systemDictionary = {
         it: "Valore per on",
         es: "Valor para en",
         pl: "Wartość dla włączenia",
+        uk: "Значення для на",
         "zh-cn": "的价值",
     },
     removeCondition: {
@@ -565,6 +622,7 @@ systemDictionary = {
         it: "Rimuovi condizione",
         es: "Eliminar condición",
         pl: "Usuń warunek",
+        uk: "Видалити умову",
         "zh-cn": "删除条件",
     },
     removeSchedule: {
@@ -577,6 +635,7 @@ systemDictionary = {
         it: "Rimuovi programma",
         es: "Eliminar horario",
         pl: "Usuń harmonogram",
+        uk: "Видалити розклад",
         "zh-cn": "删除时间表",
     },
     removeTrigger: {
@@ -589,6 +648,7 @@ systemDictionary = {
         it: "Rimuovi grilletto",
         es: "Eliminar gatillo",
         pl: "Usuń spust",
+        uk: "Зніміть тригер",
         "zh-cn": "删除触发器",
     },
     saveChanges: {
@@ -601,6 +661,7 @@ systemDictionary = {
         it: "Salvare le modifiche",
         es: "Guardar cambios",
         pl: "Zapisz zmiany",
+        uk: "Зберегти зміни",
         "zh-cn": "保存更改",
     },
     saveName: {
@@ -613,6 +674,7 @@ systemDictionary = {
         it: "Salva nome",
         es: "Guardar nombre",
         pl: "Zapisz imię",
+        uk: "Зберегти назву",
         "zh-cn": "保存名字",
     },
     scheduleId: {
@@ -625,6 +687,7 @@ systemDictionary = {
         it: "Pianifica ID dati",
         es: "Programar ID de datos",
         pl: "Zaplanuj identyfikator danych",
+        uk: "Ідентифікатор даних розкладу",
         "zh-cn": "时间表资料编号",
     },
     showConditionIds: {
@@ -637,6 +700,7 @@ systemDictionary = {
         it: "Mostra gli ID di stato della condizione",
         es: "Mostrar ID de estado de condición",
         pl: "Pokaż identyfikatory stanów warunków",
+        uk: "Показати ідентифікатори станів умов",
         "zh-cn": "显示条件状态ID",
     },
     showId: {
@@ -649,6 +713,7 @@ systemDictionary = {
         it: "Mostra ID stato commutato",
         es: "Mostrar ID de estado cambiado",
         pl: "Pokaż identyfikator stanu przełączonego",
+        uk: "Показати ідентифікатор переключеного стану",
         "zh-cn": "显示切换状态ID",
     },
     showManualSwitch: {
@@ -661,6 +726,7 @@ systemDictionary = {
         it: "Mostra interruttore manuale",
         es: "Mostrar interruptor manual",
         pl: "Pokaż przełącznik ręczny",
+        uk: "Показати ручний перемикач",
         "zh-cn": "显示手动开关",
     },
     solarNoon: {
@@ -673,6 +739,7 @@ systemDictionary = {
         it: "Mezzogiorno",
         es: "Mediodía",
         pl: "Południe",
+        uk: "полудень",
         "zh-cn": "中午",
     },
     stateId: {
@@ -685,6 +752,7 @@ systemDictionary = {
         it: "ID stato commutato",
         es: "ID de estado conmutado",
         pl: "Identyfikator stanu przełączonego",
+        uk: "Переключений ідентифікатор стану",
         "zh-cn": "切换状态编号",
     },
     oid7: {
@@ -697,6 +765,7 @@ systemDictionary = {
         it: "ID stato commutato (solo VIS-2)",
         es: "ID de estado conmutado ((sólo VIS-2))",
         pl: "Identyfikator stanu przełączonego (tylko VIS-2)",
+        uk: "Переключений ідентифікатор стану (лише VIS-2)",
         "zh-cn": "切换状态编号(仅限VIS-2)",
     },
     statesCount: {
@@ -709,6 +778,7 @@ systemDictionary = {
         it: "Conteggio degli stati commutati",
         es: "Conteo de estados conmutados",
         pl: "Liczba przełączanych stanów",
+        uk: "Кількість переключених станів",
         "zh-cn": "切换状态计数",
     },
     string: {
@@ -721,6 +791,7 @@ systemDictionary = {
         it: "corda",
         es: "cuerda",
         pl: "strunowy",
+        uk: "рядок",
         "zh-cn": "串",
     },
     sunrise: {
@@ -733,6 +804,7 @@ systemDictionary = {
         it: "Alba",
         es: "amanecer",
         pl: "wschód słońca",
+        uk: "Схід сонця",
         "zh-cn": "日出",
     },
     sunset: {
@@ -745,6 +817,7 @@ systemDictionary = {
         it: "Tramonto",
         es: "Puesta de sol",
         pl: "Zachód słońca",
+        uk: "Захід сонця",
         "zh-cn": "日落",
     },
     switchedType: {
@@ -757,6 +830,7 @@ systemDictionary = {
         it: "Tipo commutato",
         es: "Tipo conmutado",
         pl: "Typ przełączany",
+        uk: "Комутований тип",
         "zh-cn": "切换式",
     },
     switchedValue: {
@@ -769,6 +843,7 @@ systemDictionary = {
         it: "Valore commutato",
         es: "Valor conmutado",
         pl: "Wartość przełączana",
+        uk: "Переключене значення",
         "zh-cn": "切换值",
     },
     "time-switch adapter settings": {
@@ -781,6 +856,7 @@ systemDictionary = {
         it: "Impostazioni dell'adattatore per time-switch",
         es: "Ajustes del adaptador para time-switch",
         pl: "Ustawienia adaptera dla time-switch",
+        uk: "Налаштування адаптера для таймера",
         "zh-cn": "time-switch的适配器设置",
     },
     trigger: {
@@ -793,6 +869,7 @@ systemDictionary = {
         it: "grilletto",
         es: "Desencadenar",
         pl: "Wyzwalacz",
+        uk: "Тригер",
         "zh-cn": "触发",
     },
     "trigger count": {
@@ -805,6 +882,7 @@ systemDictionary = {
         it: "Conteggio dei trigger",
         es: "Recuento de disparadores",
         pl: "Liczba wyzwalaczy",
+        uk: "Кількість тригерів",
         "zh-cn": "触发计数",
     },
     true: {
@@ -817,6 +895,7 @@ systemDictionary = {
         it: "vero",
         es: "cierto",
         pl: "prawdziwe",
+        uk: "правда",
         "zh-cn": "真正",
     },
     useAstroIcons: {
@@ -829,6 +908,7 @@ systemDictionary = {
         it: "Usa le icone astro",
         es: "Usar íconos astro",
         pl: "Użyj ikon astro",
+        uk: "Використовуйте астроіконки",
         "zh-cn": "使用astro图标",
     },
     valueType: {
@@ -841,6 +921,7 @@ systemDictionary = {
         it: "Tipo di valore",
         es: "Tipo de valor",
         pl: "Typ wartości",
+        uk: "Тип значення",
         "zh-cn": "值类型",
     },
     withConstant: {
@@ -853,6 +934,7 @@ systemDictionary = {
         it: "Con costante",
         es: "Con constante",
         pl: "Ze stałą",
+        uk: "З постійним",
         "zh-cn": "不变",
     },
     switch_delay: {
@@ -867,5 +949,31 @@ systemDictionary = {
         pl: "Opóźnienie między 2 operacjami przełączania w ms",
         uk: "Прокладання між 2 операціями перемикання в мс",
         "zh-cn": "2个切换操作之间的延迟( ms)",
+    },
+    addOneTimeTrigger: {
+        en: "One time trigger",
+        de: "Einmaltrigger",
+        ru: "Одноразовый триггер",
+        pt: "Gatilho de uma só vez",
+        nl: "Eenmalige trigger",
+        fr: "Déclencheur unique",
+        it: "Innesco una tantum",
+        es: "Disparador de una sola vez",
+        pl: "Jednorazowy wyzwalacz",
+        uk: "Одноразовий тригер",
+        "zh-cn": "一次触发",
+    },
+    oneTimeTriggerInfo: {
+        en: "Trigger once in hh:mm:ss:",
+        de: "Einmal auslösen in hh:mm:ss:",
+        ru: "Один раз запускать в ч: мм: сс:",
+        pt: "Acione uma vez em h: mm: ss:",
+        nl: "Activeer eenmaal in u:mm:ss:",
+        fr: "Déclenchement une fois en h:mm:ss:",
+        it: "Attiva una volta in h:mm:ss:",
+        es: "Disparo una vez en h: mm: ss:",
+        pl: "Aktywuj raz w h:mm:ss:",
+        uk: "Тригер один в hh:mm:ss:",
+        "zh-cn": "在 h:mm:ss 触发一次：",
     },
 };

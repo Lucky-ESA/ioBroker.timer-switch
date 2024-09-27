@@ -75,19 +75,11 @@
         }
 
         onAddConditionClick() {
-            if (this.action.type === "OnOffStateAction") {
-                const conditionAction = {
-                    type: "ConditionAction",
-                    condition: {
-                        type: "StringStateAndConstantCondition",
-                        constant: "true",
-                        stateId: vis.binds["timer-switch"].getConditionStateIdsAndAlias(
-                            this.getAttribute("widgetid"),
-                        )[0].id,
-                        sign: "==",
-                    },
-                    action: this.action,
-                };
+            const conditionAction = vis.binds["timer-switch"].addConditionToAction(
+                this.action,
+                this.getAttribute("widgetid"),
+            );
+            if (conditionAction) {
                 this.setAttribute("action", JSON.stringify(conditionAction));
             }
         }
@@ -200,13 +192,13 @@
 
         getActionElement(edit) {
             const newAction = this.action;
-            const elementName = this.getElementNameForActionType(newAction.type);
+            const elementName = vis.binds["timer-switch"].getElementNameForActionType(newAction.type);
             return this.sr.querySelector(`.container.${edit ? "edit" : "view"} .action ${elementName}`);
         }
 
         getTriggerElement(edit) {
             const newTrigger = this.trigger;
-            const elementName = this.getElementNameForTriggerType(newTrigger.type);
+            const elementName = vis.binds["timer-switch"].getElementNameForTriggerType(newTrigger.type);
             return this.sr.querySelector(`.container.${edit ? "edit" : "view"} .trigger ${elementName}`);
         }
 
@@ -216,7 +208,7 @@
 
         onTriggerChange() {
             const newTrigger = this.trigger;
-            const elementName = this.getElementNameForTriggerType(newTrigger.type);
+            const elementName = vis.binds["timer-switch"].getElementNameForTriggerType(newTrigger.type);
             let triggerView = this.sr.querySelector(`.container.view .trigger ${elementName}`);
             if (!triggerView) {
                 triggerView = document.createElement(elementName);
@@ -240,7 +232,7 @@
 
         onActionChange() {
             const newAction = this.action;
-            const elementName = this.getElementNameForActionType(newAction.type);
+            const elementName = vis.binds["timer-switch"].getElementNameForActionType(newAction.type);
             const viewAction = this.sr.querySelector(".container.view .action");
             if (viewAction.firstChild) {
                 viewAction.removeChild(viewAction.firstChild);
@@ -261,26 +253,6 @@
             actionView.setAttribute("data", JSON.stringify(newAction));
             actionEdit.setAttribute("data", JSON.stringify(newAction));
             this.sr.querySelector(".condition").style.display = newAction.type === "ConditionAction" ? "none" : null;
-        }
-
-        getElementNameForTriggerType(type) {
-            if (type === "TimeTrigger") {
-                return "app-time-trigger-timer";
-            } else if (type === "AstroTrigger") {
-                return "app-astro-trigger-timer";
-            } else {
-                throw Error("No widget for trigger found");
-            }
-        }
-
-        getElementNameForActionType(type) {
-            if (type === "OnOffStateAction") {
-                return "app-on-off-state-action-timer";
-            } else if (type === "ConditionAction") {
-                return "app-condition-action-timer";
-            } else {
-                throw Error("No widget for action found");
-            }
         }
     }
     customElements.define("app-trigger-with-action-timer", TriggerWithAction);

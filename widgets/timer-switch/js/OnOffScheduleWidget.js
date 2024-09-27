@@ -31,6 +31,9 @@
             });
             this.sr.querySelector("#add-time-trigger").addEventListener("click", () => this.addTrigger("TimeTrigger"));
             this.sr
+                .querySelector("#add-one-time-trigger")
+                .addEventListener("click", () => this.addTrigger("OneTimeTrigger"));
+            this.sr
                 .querySelector("#add-astro-trigger")
                 .addEventListener("click", () => this.addTrigger("AstroTrigger"));
             this.sr.querySelector(".button.edit").addEventListener("click", this.onEditNameClick.bind(this));
@@ -94,11 +97,20 @@
         set triggers(triggers) {
             this.currentTriggers = triggers;
             const oldTriggers = this.sr.querySelector(".triggers");
+            const oneTimeTriggersInCreation = [];
             while (oldTriggers.firstChild) {
-                oldTriggers.removeChild(oldTriggers.firstChild);
+                const t = oldTriggers.removeChild(oldTriggers.firstChild);
+                if (t.nodeName === "APP-ONE-TIME-TRIGGER-TIMER" && t.getAttribute("edit")) {
+                    oneTimeTriggersInCreation.push(t);
+                }
             }
+            oneTimeTriggersInCreation.forEach((t) => {
+                this.sr.querySelector(`.triggers`).appendChild(t);
+            });
             triggers.forEach((t) => {
-                const element = document.createElement("app-trigger-with-action-timer");
+                const element = document.createElement(
+                    t.type === "OneTimeTrigger" ? "app-one-time-trigger-timer" : "app-trigger-with-action-timer",
+                );
                 element.setAttribute("widgetid", this.widgetId);
                 element.setAttribute("action", JSON.stringify(t.action));
                 delete t.action;
@@ -218,22 +230,15 @@
         }
 
         addTrigger(type) {
-            console.log("addTrigger");
-            const message = {
-                dataId: this.settings.dataId,
-                triggerType: type,
-                actionType: "OnOffValueAction",
-                valueType: this.settings.valueType,
-                stateIds: this.getStateIdsFromSettings(this.settings),
-            };
-            if (this.settings.valueType === "number") {
-                message.onValue = Number.parseFloat(this.settings.onValue);
-                message.offValue = Number.parseFloat(this.settings.offValue);
-            } else if (this.settings.valueType === "string") {
-                message.onValue = this.settings.onValue;
-                message.offValue = this.settings.offValue;
+            if (type === "OneTimeTrigger") {
+                this.createOneTimeTrigger();
+            } else {
+                vis.binds["timer-switch"].sendMessage("add-trigger", {
+                    dataId: this.settings.dataId,
+                    triggerType: type,
+                    actionType: "OnOffStateAction",
+                });
             }
-            vis.binds["timer-switch"].sendMessage("add-trigger", message);
         }
 
         updateStoredSettings(newSettings) {
@@ -304,6 +309,34 @@
             return val;
         }
 
+        createOneTimeTrigger() {
+            const trigger = document.createElement("app-one-time-trigger-timer");
+            trigger.setAttribute("edit", true);
+            trigger.setAttribute("widgetid", this.getAttribute("widgetid"));
+            trigger.setAttribute(
+                "action",
+                JSON.stringify({
+                    type: "OnOffStateAction",
+                    name: "On",
+                }),
+            );
+            trigger.addEventListener("delete", (e) => this.onTriggerDelete(e.detail.id));
+            trigger.addEventListener("cancel-one-time-trigger-creation", (e) => {
+                const triggers = this.sr.querySelector(`.triggers`);
+                if (Array.from(triggers.children).find((element) => element === e.target)) {
+                    triggers.removeChild(e.target);
+                }
+            });
+            trigger.addEventListener("create", (e) => {
+                console.log("got create, sending message");
+                vis.binds["timer-switch"].sendMessage("add-one-time-trigger", {
+                    dataId: this.settings.dataId,
+                    trigger: JSON.stringify(e.detail.trigger),
+                });
+            });
+            this.sr.querySelector(`.triggers`).appendChild(trigger);
+        }
+
         createShadowRoot() {
             console.log("createShadowRoot");
             const shadowRoot = this.attachShadow({ mode: "open" });
@@ -350,6 +383,7 @@
 						  <div id="add-trigger-dropdown" class="dropdown-content">
 							<div class="dropdown-btn" id="add-time-trigger">${vis.binds["timer-switch"].translate("addTimeTrigger")}</div>
 							<div class="dropdown-btn" id="add-astro-trigger">${vis.binds["timer-switch"].translate("addAstroTrigger")}</div>
+                            <div class="dropdown-btn" id="add-one-time-trigger">${vis.binds["timer-switch"].translate("addOneTimeTrigger")}</div>
 						  </div>
 						</div>
 					</div>

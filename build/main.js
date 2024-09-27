@@ -36,12 +36,14 @@ var import_node_schedule = require("node-schedule");
 var import_suncalc = require("suncalc");
 var import_Coordinate = require("./Coordinate");
 var import_AstroTriggerScheduler = require("./scheduler/AstroTriggerScheduler");
+var import_OneTimeTriggerScheduler = require("./scheduler/OneTimeTriggerScheduler");
 var import_TimeTriggerScheduler = require("./scheduler/TimeTriggerScheduler");
 var import_UniversalTriggerScheduler = require("./scheduler/UniversalTriggerScheduler");
 var import_AstroTriggerSerializer = require("./serialization/AstroTriggerSerializer");
 var import_ConditionActionSerializer = require("./serialization/ConditionActionSerializer");
 var import_StringStateAndConstantConditionSerializer = require("./serialization/conditions/StringStateAndConstantConditionSerializer");
 var import_StringStateAndStateConditionSerializer = require("./serialization/conditions/StringStateAndStateConditionSerializer");
+var import_OneTimeTriggerSerializer = require("./serialization/OneTimeTriggerSerializer");
 var import_OnOffScheduleSerializer = require("./serialization/OnOffScheduleSerializer");
 var import_OnOffStateActionSerializer = require("./serialization/OnOffStateActionSerializer");
 var import_TimeTriggerSerializer = require("./serialization/TimeTriggerSerializer");
@@ -284,7 +286,7 @@ class TimerSwitch extends utils.Adapter {
       this.log.debug("schedule found: " + this.scheduleIdToSchedule.get(id));
     }
     try {
-      const schedule = (await this.createNewOnOffScheduleSerializer()).deserialize(scheduleString);
+      const schedule = (await this.createNewOnOffScheduleSerializer(id)).deserialize(scheduleString);
       const enabledState = await this.getStateAsync(TimerSwitch.getEnabledIdFromScheduleId(id));
       if (enabledState) {
         (_a = this.scheduleIdToSchedule.get(id)) == null ? void 0 : _a.destroy();
@@ -323,7 +325,7 @@ class TimerSwitch extends utils.Adapter {
   logError(error) {
     this.log.error(error.stack || `${error.name}: ${error.message}`);
   }
-  async createNewOnOffScheduleSerializer() {
+  async createNewOnOffScheduleSerializer(dataId) {
     const actionSerializer = new import_UniversalSerializer.UniversalSerializer([new import_OnOffStateActionSerializer.OnOffStateActionSerializer(this.stateService)]);
     actionSerializer.useSerializer(
       new import_ConditionActionSerializer.ConditionActionSerializer(
@@ -337,7 +339,18 @@ class TimerSwitch extends utils.Adapter {
     );
     const triggerSerializer = new import_UniversalSerializer.UniversalSerializer([
       new import_TimeTriggerSerializer.TimeTriggerSerializer(actionSerializer),
-      new import_AstroTriggerSerializer.AstroTriggerSerializer(actionSerializer)
+      new import_AstroTriggerSerializer.AstroTriggerSerializer(actionSerializer),
+      new import_OneTimeTriggerSerializer.OneTimeTriggerSerializer(actionSerializer, (triggerId) => {
+        var _a;
+        (_a = this.messageService) == null ? void 0 : _a.handleMessage({
+          message: {
+            dataId,
+            triggerId
+          },
+          command: "delete-trigger",
+          from: "timer-switch.0"
+        });
+      })
     ]);
     return new import_OnOffScheduleSerializer.OnOffScheduleSerializer(
       new import_UniversalTriggerScheduler.UniversalTriggerScheduler([
@@ -347,7 +360,8 @@ class TimerSwitch extends utils.Adapter {
           import_suncalc.getTimes,
           await this.getCoordinate(),
           this.loggingService
-        )
+        ),
+        new import_OneTimeTriggerScheduler.OneTimeTriggerScheduler(import_node_schedule.scheduleJob, import_node_schedule.cancelJob, this.loggingService)
       ]),
       actionSerializer,
       triggerSerializer

@@ -53,7 +53,7 @@ class MessageService {
         await this.addTrigger(schedule, data);
         break;
       case "update-trigger":
-        await this.updateTrigger(schedule, JSON.stringify(data.trigger));
+        await this.updateTrigger(schedule, JSON.stringify(data.trigger), data.dataId);
         break;
       case "delete-trigger":
         schedule.removeTrigger(data.triggerId);
@@ -81,7 +81,7 @@ class MessageService {
     if (schedule instanceof import_OnOffSchedule.OnOffSchedule) {
       await this.stateService.setState(
         data.dataId,
-        (await this.createOnOffScheduleSerializer()).serialize(schedule)
+        (await this.createOnOffScheduleSerializer(data.dataId)).serialize(schedule)
       );
     } else {
       throw new Error("Cannot update schedule state after message, no serializer found for schedule");
@@ -101,18 +101,24 @@ class MessageService {
       throw new Error(`Cannot add trigger of type ${data.triggerType}`);
     }
     triggerBuilder.setWeekdays(import_Weekday.AllWeekdays).setId(this.getNextTriggerId(schedule.getTriggers()));
-    if (data.actionType === "OnOffValueAction" && schedule instanceof import_OnOffSchedule.OnOffSchedule) {
-      this.logger.logDebug("Wants OnOffValueAction");
+    if (data.actionType === "OnOffStateAction" && schedule instanceof import_OnOffSchedule.OnOffSchedule) {
+      this.logger.logDebug("Wants OnOffStateAction");
       triggerBuilder.setAction(schedule.getOnAction());
     } else {
       throw new Error(`Cannot add trigger with action of type ${data.actionType}`);
     }
     schedule.addTrigger(triggerBuilder.build());
   }
-  async updateTrigger(schedule, triggerString) {
+  async addOneTimeTrigger(schedule, data) {
+    const t = JSON.parse(data.trigger);
+    t.id = this.getNextTriggerId(schedule.getTriggers());
+    const trigger = (await this.createOnOffScheduleSerializer(data.dataId)).getTriggerSerializer(schedule).deserialize(JSON.stringify(t));
+    schedule.addTrigger(trigger);
+  }
+  async updateTrigger(schedule, triggerString, dataId) {
     let updated;
     if (schedule instanceof import_OnOffSchedule.OnOffSchedule) {
-      updated = (await this.createOnOffScheduleSerializer()).getTriggerSerializer(schedule).deserialize(triggerString);
+      updated = (await this.createOnOffScheduleSerializer(dataId)).getTriggerSerializer(schedule).deserialize(triggerString);
     } else {
       throw new Error(`Can not deserialize trigger for schedule of type ${typeof schedule}`);
     }
