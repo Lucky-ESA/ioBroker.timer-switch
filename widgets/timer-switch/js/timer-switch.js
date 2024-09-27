@@ -137,9 +137,9 @@ function onDataIdChange(widgetId, view, newId, attr, isCss, oldId) {
     if (isCss) console.log("isCss: " + isCss);
     if (oldId) console.log("oldId: " + oldId);
     if (!vis.views[view].widgets[widgetId].data.bindings) {
-        vis.views[view].widgets[widgetId].data.oid11 = newId;
+        vis.views[view].widgets[widgetId].data.oid6 = newId;
         if (newId) {
-            vis.views[view].widgets[widgetId].data.oid13 = newId.replace("data", "enabled");
+            vis.views[view].widgets[widgetId].data.oid8 = newId.replace("data", "enabled");
         }
     }
 }
@@ -156,7 +156,7 @@ function onStateIdChange(widgetId, view, newId, attr, isCss, oldId) {
     if (isCss) console.log("isCss: " + isCss);
     if (oldId) console.log("oldId: " + oldId);
     if (!vis.views[view].widgets[widgetId].data.bindings) {
-        vis.views[view].widgets[widgetId].data.oid2 = newId;
+        vis.views[view].widgets[widgetId].data.oid7 = newId;
     }
 }
 
