@@ -209,9 +209,9 @@
 
         getElementNameForActionType(type) {
             if (type === "OnOffStateAction") {
-                return "app-on-off-state-action";
+                return "app-on-off-state-action-timer";
             } else if (type === "ConditionAction") {
-                return "app-condition-action";
+                return "app-condition-action-timer";
             } else {
                 throw Error("No widget for action found");
             }
@@ -280,5 +280,5 @@
         }
     }
 
-    customElements.define("app-condition-action", ConditionAction);
+    customElements.define("app-condition-action-timer", ConditionAction);
 })();

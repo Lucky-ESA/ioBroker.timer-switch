@@ -131,5 +131,5 @@
         }
     }
 
-    customElements.define("app-weekdays", Weekdays);
+    customElements.define("app-weekdays-timer", Weekdays);
 })();

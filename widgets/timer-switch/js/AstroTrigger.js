@@ -140,5 +140,5 @@
         }
     }
 
-    customElements.define("app-astro-trigger", AstroTrigger);
+    customElements.define("app-astro-trigger-timer", AstroTrigger);
 })();

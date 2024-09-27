@@ -98,7 +98,7 @@
                 oldTriggers.removeChild(oldTriggers.firstChild);
             }
             triggers.forEach((t) => {
-                const element = document.createElement("app-trigger-with-action");
+                const element = document.createElement("app-trigger-with-action-timer");
                 element.setAttribute("widgetid", this.widgetId);
                 element.setAttribute("action", JSON.stringify(t.action));
                 delete t.action;
@@ -359,5 +359,5 @@
             return shadowRoot;
         }
     }
-    customElements.define("app-on-off-schedule-widget", OnOffScheduleWidget);
+    customElements.define("app-on-off-schedules-widget", OnOffScheduleWidget);
 })();

@@ -108,5 +108,5 @@
         }
     }
 
-    customElements.define("app-time-trigger", TimeTrigger);
+    customElements.define("app-time-trigger-timer", TimeTrigger);
 })();

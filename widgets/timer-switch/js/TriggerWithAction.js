@@ -124,7 +124,7 @@
             this.updateValidationErrors();
             if (this.validationErrors.length === 0) {
                 const selectedWeekdays = JSON.parse(
-                    this.sr.querySelector(".edit app-weekdays").getAttribute("selected"),
+                    this.sr.querySelector(".edit app-weekdays-timer").getAttribute("selected"),
                 );
                 const newTrigger = JSON.parse(this.getTriggerElement(true).getAttribute("data"));
                 newTrigger.weekdays = selectedWeekdays;
@@ -171,7 +171,7 @@
 							<img class="button delete" src="widgets/timer-switch/img/delete-24px.svg" width="28px"
 								height="28px" title="${vis.binds["timer-switch"].translate("removeTrigger")}"/>
 						</div>
-						<app-weekdays edit="false"></app-weekdays>
+						<app-weekdays-timer edit="false"></app-weekdays-timer>
 					</div>
 					<div class="container edit" style="display: none">
 						<div class="header">
@@ -192,7 +192,7 @@
 						</div>
 						<div>${vis.binds["timer-switch"].translate("trigger")}</div>
 						<div class="trigger"></div>
-						<app-weekdays edit="true"></app-weekdays>
+						<app-weekdays-timer edit="true"></app-weekdays-timer>
 					</div>
 				`;
             return shadowRoot;
@@ -211,7 +211,7 @@
         }
 
         getWeekdaysElement() {
-            return this.sr.querySelector(".edit app-weekdays");
+            return this.sr.querySelector(".edit app-weekdays-timer");
         }
 
         onTriggerChange() {
@@ -233,7 +233,7 @@
             }
             triggerView.setAttribute("data", JSON.stringify(newTrigger));
             triggerEdit.setAttribute("data", JSON.stringify(newTrigger));
-            this.sr.querySelectorAll("app-weekdays").forEach((w) => {
+            this.sr.querySelectorAll("app-weekdays-timer").forEach((w) => {
                 w.setAttribute("selected", JSON.stringify(newTrigger.weekdays));
             });
         }
@@ -265,9 +265,9 @@
 
         getElementNameForTriggerType(type) {
             if (type === "TimeTrigger") {
-                return "app-time-trigger";
+                return "app-time-trigger-timer";
             } else if (type === "AstroTrigger") {
-                return "app-astro-trigger";
+                return "app-astro-trigger-timer";
             } else {
                 throw Error("No widget for trigger found");
             }
@@ -275,13 +275,13 @@
 
         getElementNameForActionType(type) {
             if (type === "OnOffStateAction") {
-                return "app-on-off-state-action";
+                return "app-on-off-state-action-timer";
             } else if (type === "ConditionAction") {
-                return "app-condition-action";
+                return "app-condition-action-timer";
             } else {
                 throw Error("No widget for action found");
             }
         }
     }
-    customElements.define("app-trigger-with-action", TriggerWithAction);
+    customElements.define("app-trigger-with-action-timer", TriggerWithAction);
 })();

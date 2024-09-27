@@ -78,7 +78,7 @@ function createOnOffWidget(widgetId, view, data, style) {
         return;
     }
     console.debug(`validateOnOffWidgetSettings`);
-    const element = document.createElement("app-on-off-schedule-widget");
+    const element = document.createElement("app-on-off-schedules-widget");
     element.setAttribute("widgetid", widgetId);
     element.style.setProperty("--ts-widget-astro-icon-display", data.useAstroIcons ? "inline" : "none");
     element.style.setProperty("--ts-widget-astro-text-display", data.useAstroIcons ? "none" : "inline");

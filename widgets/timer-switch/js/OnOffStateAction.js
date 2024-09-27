@@ -86,5 +86,5 @@
         }
     }
 
-    customElements.define("app-on-off-state-action", OnOffStateAction);
+    customElements.define("app-on-off-state-action-timer", OnOffStateAction);
 })();
