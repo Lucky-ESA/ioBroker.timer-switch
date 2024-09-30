@@ -32,6 +32,8 @@ vis.binds["timer-switch"] = {
     getConditionStateIdsAndAlias: getConditionStateIdsAndAlias,
     getElementNameForTriggerType: getElementNameForTriggerType,
     getElementNameForActionType: getElementNameForActionType,
+    onChangeEnabled: onChangeEnabled,
+    onValueTypeChange: onValueTypeChange,
     sendMessage: sendMessage,
     translate: translate,
     addConditionToAction: addConditionToAction,
@@ -62,6 +64,39 @@ function sendMessage(cmd, data) {
 
 function translate(word) {
     return translateWord(word, systemLang, timeSwitchDic);
+}
+
+/**
+ * Check value type.
+ */
+function onValueTypeChange(widgetId, view, newId, attr, isCss, oldId) {
+    console.log("onValueTypeChange");
+    console.log("widgetId: " + widgetId);
+    console.log("view: " + view);
+    if (newId) console.log("newId: " + newId);
+    if (attr) console.log("attr: " + attr);
+    if (isCss) console.log("isCss: " + isCss);
+    if (oldId) console.log("oldId: " + oldId);
+}
+
+/**
+ * Check Enabled with ID.
+ */
+function onChangeEnabled(widgetId, view, newId, attr, isCss, oldId) {
+    console.log("onChangeEnabled");
+    console.log("widgetId: " + widgetId);
+    console.log("view: " + view);
+    if (newId) console.log("newId: " + newId);
+    if (attr) console.log("attr: " + attr);
+    if (isCss) console.log("isCss: " + isCss);
+    if (oldId) console.log("oldId: " + oldId);
+    const enabled = newId ? newId.split(".") : [];
+    const dataId = vis.views[view].widgets[widgetId].data["oid-dataId"];
+    console.log("enabled: " + enabled);
+    console.log("dataId: " + dataId);
+    if (enabled[3] !== dataId[3]) {
+        console.error("WRONG ENABLED ID!!!!");
+    }
 }
 
 function createOnOffWidget(widgetId, view, data, style) {
