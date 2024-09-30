@@ -172,6 +172,7 @@ export class TimerSwitch extends utils.Adapter {
             this.loggingService,
             this.scheduleIdToSchedule,
             this.createNewOnOffScheduleSerializer.bind(this),
+            this,
         );
     }
 
@@ -357,7 +358,7 @@ export class TimerSwitch extends utils.Adapter {
                     await this.getCoordinate(),
                     this.loggingService,
                 ),
-                new OneTimeTriggerScheduler(scheduleJob, cancelJob, this.loggingService),
+                new OneTimeTriggerScheduler(scheduleJob, cancelJob, this.loggingService, this),
             ]),
             actionSerializer,
             triggerSerializer,

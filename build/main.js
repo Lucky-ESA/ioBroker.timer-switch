@@ -181,7 +181,8 @@ class TimerSwitch extends utils.Adapter {
       this.stateService,
       this.loggingService,
       this.scheduleIdToSchedule,
-      this.createNewOnOffScheduleSerializer.bind(this)
+      this.createNewOnOffScheduleSerializer.bind(this),
+      this
     );
   }
   async fixStateStructure(statesInSettings) {
@@ -361,7 +362,7 @@ class TimerSwitch extends utils.Adapter {
           await this.getCoordinate(),
           this.loggingService
         ),
-        new import_OneTimeTriggerScheduler.OneTimeTriggerScheduler(import_node_schedule.scheduleJob, import_node_schedule.cancelJob, this.loggingService)
+        new import_OneTimeTriggerScheduler.OneTimeTriggerScheduler(import_node_schedule.scheduleJob, import_node_schedule.cancelJob, this.loggingService, this)
       ]),
       actionSerializer,
       triggerSerializer

@@ -5,13 +5,17 @@ import { TriggerScheduler } from "./TriggerScheduler";
 
 export class OneTimeTriggerScheduler extends TriggerScheduler {
     private registered: [OneTimeTrigger, Job][] = [];
+    private triggerTimeout: any;
 
     constructor(
         private scheduleJob: (date: Date, callback: JobCallback) => Job,
         private cancelJob: (job: Job) => boolean,
         private logger: LoggingService,
+        private adapter: ioBroker.Adapter,
     ) {
         super();
+        this.adapter = adapter;
+        this.triggerTimeout = undefined;
     }
 
     public forType(): string {
@@ -25,9 +29,10 @@ export class OneTimeTriggerScheduler extends TriggerScheduler {
         }
         if (trigger.getDate() < new Date()) {
             this.logger.logDebug(`Date is in past, deleting trigger ${trigger}`);
-            setTimeout(() => {
+            this.triggerTimeout = this.adapter.setTimeout(() => {
                 trigger.destroy();
-            }, 2_000);
+                this.triggerTimeout = undefined;
+            }, 2000);
         } else {
             const newJob = this.scheduleJob(trigger.getDate(), () => {
                 this.logger.logDebug(`Executing trigger ${trigger}`);
@@ -47,6 +52,7 @@ export class OneTimeTriggerScheduler extends TriggerScheduler {
     }
 
     public destroy(): void {
+        this.triggerTimeout && this.adapter.clearTimeout(this.triggerTimeout);
         this.registered.forEach((r) => this.unregister(r[0]));
     }
 

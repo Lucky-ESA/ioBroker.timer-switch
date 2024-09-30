@@ -43,7 +43,7 @@
             this.sr.querySelector("#enabled").addEventListener("click", () => {
                 this.enabled = !this.enabled;
                 vis.binds["timer-switch"].sendMessage(this.enabled ? "enable-schedule" : "disable-schedule", {
-                    dataId: this.settings.dataId,
+                    dataId: this.settings["oid-dataId"],
                 });
             });
             this.sr.querySelector("#manual").addEventListener("click", () => {
@@ -139,30 +139,27 @@
             console.log("newSettings.showId: " + newSettings.showId);
             console.log("newSettings.statesCount: " + newSettings.statesCount);
             if (newSettings.showId && newSettings.statesCount === "1") {
-                this.sr.querySelector("#switched-oid").textContent = newSettings.stateId1;
+                this.sr.querySelector("#switched-oid").textContent = newSettings["oid-stateId1"];
             }
             const oldSettings = vis.binds["timer-switch"].onOffScheduleWidgets[this.widgetId];
             console.log("old settings: " + JSON.stringify(oldSettings));
             console.log("newSettings: " + JSON.stringify(newSettings));
             this.detectSettingsChanges(oldSettings, newSettings);
             this.updateStoredSettings(newSettings);
-            console.log("this.settings.dataId: " + this.settings.dataId);
-            console.log("STATE: " + vis.states.attr(`${this.settings.dataId}.val`));
+            console.log("this.settings.dataId: " + this.settings["oid-dataId"]);
+            console.log("STATE: " + vis.states.attr(`${this.settings["oid-dataId"]}.val`));
             console.log("STATE: " + JSON.stringify(vis.states.attr()));
-            if (vis.states.attr(`${this.settings.dataId}.val`)) {
-                this.onScheduleDataChange(JSON.parse(vis.states.attr(`${this.settings.dataId}.val`)));
+            if (vis.states.attr(`${this.settings["oid-dataId"]}.val`)) {
+                this.onScheduleDataChange(JSON.parse(vis.states.attr(`${this.settings["oid-dataId"]}.val`)));
             }
-            const enabledId = this.settings.dataId.replace("data", "enabled");
-            console.log("enabledId: " + enabledId);
-            console.log("this.enabled0: " + JSON.stringify(vis.states.attr()));
-            this.enabled = vis.states.attr(`${enabledId}.val`);
+            this.enabled = vis.states.attr(`${this.settings["oid-enabled"]}.val`);
             console.log("this.enabled1: " + JSON.stringify(vis.states.attr()));
             console.log("this.enabled: " + this.enabled);
-            vis.states.bind(`${newSettings.dataId}.val`, (e, newVal) => {
+            vis.states.bind(`${newSettings["oid-dataId"]}.val`, (e, newVal) => {
                 const scheduleData = JSON.parse(newVal);
                 this.onScheduleDataChange(scheduleData);
             });
-            vis.states.bind(`${enabledId}.val`, (e, newVal) => (this.enabled = newVal));
+            vis.states.bind(`${this.settings["oid-enabled"]}.val`, (e, newVal) => (this.enabled = newVal));
             if (this.settings.showManualSwitch) {
                 const stateIds = this.getStateIdsFromSettings(this.settings);
                 if (stateIds.length === 1) {
@@ -193,7 +190,7 @@
             console.log("onSaveNameClick");
             const newName = this.sr.querySelector(".heading .edit input").value;
             vis.binds["timer-switch"].sendMessage("change-name", {
-                dataId: this.settings.dataId,
+                dataId: this.settings["oid-dataId"],
                 name: newName,
             });
             this.nameEditMode = false;
@@ -216,7 +213,7 @@
         onTriggerDelete(triggerId) {
             console.log("onTriggerDelete");
             vis.binds["timer-switch"].sendMessage("delete-trigger", {
-                dataId: this.settings.dataId,
+                dataId: this.settings["oid-dataId"],
                 triggerId: triggerId,
             });
         }
@@ -224,7 +221,7 @@
         onTriggerUpdate(trigger) {
             console.log("onTriggerUpdate");
             vis.binds["timer-switch"].sendMessage("update-trigger", {
-                dataId: this.settings.dataId,
+                dataId: this.settings["oid-dataId"],
                 trigger: trigger,
             });
         }
@@ -234,7 +231,7 @@
                 this.createOneTimeTrigger();
             } else {
                 vis.binds["timer-switch"].sendMessage("add-trigger", {
-                    dataId: this.settings.dataId,
+                    dataId: this.settings["oid-dataId"],
                     triggerType: type,
                     actionType: "OnOffStateAction",
                 });
@@ -263,7 +260,7 @@
             ) {
                 console.log("sending change switched oids");
                 vis.binds["timer-switch"].sendMessage("change-switched-ids", {
-                    dataId: newSettings.dataId,
+                    dataId: newSettings["oid-dataId"],
                     stateIds: newStateIds,
                 });
             }
@@ -275,7 +272,7 @@
             ) {
                 console.log("sending change switched values");
                 vis.binds["timer-switch"].sendMessage("change-switched-values", {
-                    dataId: newSettings.dataId,
+                    dataId: newSettings["oid-dataId"],
                     valueType: newSettings.valueType,
                     onValue:
                         newSettings.valueType === "number"
@@ -294,7 +291,7 @@
             const count = Number.parseInt(settings.statesCount, 10);
             const ids = [];
             for (let i = 1; i <= count; i++) {
-                const id = settings["stateId" + i];
+                const id = settings["oid-stateId" + i];
                 if (id !== undefined && id !== "") {
                     ids.push(id);
                 }
@@ -330,7 +327,7 @@
             trigger.addEventListener("create", (e) => {
                 console.log("got create, sending message");
                 vis.binds["timer-switch"].sendMessage("add-one-time-trigger", {
-                    dataId: this.settings.dataId,
+                    dataId: this.settings["oid-dataId"],
                     trigger: JSON.stringify(e.detail.trigger),
                 });
             });

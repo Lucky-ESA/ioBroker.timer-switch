@@ -14,17 +14,25 @@ import { StateService } from "./StateService";
 
 export class MessageService {
     private currentMessage: ioBroker.Message | null = null;
+    private triggerTimeout: any;
 
     constructor(
         private stateService: StateService,
         private logger: LoggingService,
         private scheduleIdToSchedule: Map<string, Schedule>,
         private createOnOffScheduleSerializer: (dataId: string) => Promise<OnOffScheduleSerializer>,
-    ) {}
+        private adapter: ioBroker.Adapter,
+    ) {
+        this.adapter = adapter;
+        this.triggerTimeout = undefined;
+    }
 
     public async handleMessage(message: ioBroker.Message): Promise<void> {
         if (this.currentMessage) {
-            setTimeout(() => this.handleMessage(message), 50);
+            this.triggerTimeout = this.adapter.setTimeout(() => {
+                this.handleMessage(message);
+                this.triggerTimeout = undefined;
+            }, 50);
             return;
         }
         this.currentMessage = message;

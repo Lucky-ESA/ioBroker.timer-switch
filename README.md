@@ -24,7 +24,13 @@ Plan your own schedules
 
 ### **WORK IN PROGRESS**
 
--   (Lucky_ESA) initial release
+-   (Lucky_ESA) Added rename
+-   (Lucky_ESA) Added CSS
+-   (Lucky_ESA) Bugfix
+
+### 0.0.2 (2024-09-20)
+
+-   (Lucky-ESA) initial release
 
 ## License
 

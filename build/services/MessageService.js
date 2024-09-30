@@ -28,16 +28,23 @@ var import_AstroTriggerBuilder = require("../triggers/AstroTriggerBuilder");
 var import_TimeTriggerBuilder = require("../triggers/TimeTriggerBuilder");
 var import_Weekday = require("../triggers/Weekday");
 class MessageService {
-  constructor(stateService, logger, scheduleIdToSchedule, createOnOffScheduleSerializer) {
+  constructor(stateService, logger, scheduleIdToSchedule, createOnOffScheduleSerializer, adapter) {
     this.stateService = stateService;
     this.logger = logger;
     this.scheduleIdToSchedule = scheduleIdToSchedule;
     this.createOnOffScheduleSerializer = createOnOffScheduleSerializer;
+    this.adapter = adapter;
+    this.adapter = adapter;
+    this.triggerTimeout = void 0;
   }
   currentMessage = null;
+  triggerTimeout;
   async handleMessage(message) {
     if (this.currentMessage) {
-      setTimeout(() => this.handleMessage(message), 50);
+      this.triggerTimeout = this.adapter.setTimeout(() => {
+        this.handleMessage(message);
+        this.triggerTimeout = void 0;
+      }, 50);
       return;
     }
     this.currentMessage = message;

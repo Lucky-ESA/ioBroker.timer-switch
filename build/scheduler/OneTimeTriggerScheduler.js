@@ -24,13 +24,17 @@ module.exports = __toCommonJS(OneTimeTriggerScheduler_exports);
 var import_OneTimeTrigger = require("../triggers/OneTimeTrigger");
 var import_TriggerScheduler = require("./TriggerScheduler");
 class OneTimeTriggerScheduler extends import_TriggerScheduler.TriggerScheduler {
-  constructor(scheduleJob, cancelJob, logger) {
+  constructor(scheduleJob, cancelJob, logger, adapter) {
     super();
     this.scheduleJob = scheduleJob;
     this.cancelJob = cancelJob;
     this.logger = logger;
+    this.adapter = adapter;
+    this.adapter = adapter;
+    this.triggerTimeout = void 0;
   }
   registered = [];
+  triggerTimeout;
   forType() {
     return import_OneTimeTrigger.OneTimeTrigger.prototype.constructor.name;
   }
@@ -41,8 +45,9 @@ class OneTimeTriggerScheduler extends import_TriggerScheduler.TriggerScheduler {
     }
     if (trigger.getDate() < /* @__PURE__ */ new Date()) {
       this.logger.logDebug(`Date is in past, deleting trigger ${trigger}`);
-      setTimeout(() => {
+      this.triggerTimeout = this.adapter.setTimeout(() => {
         trigger.destroy();
+        this.triggerTimeout = void 0;
       }, 2e3);
     } else {
       const newJob = this.scheduleJob(trigger.getDate(), () => {
@@ -61,6 +66,7 @@ class OneTimeTriggerScheduler extends import_TriggerScheduler.TriggerScheduler {
     }
   }
   destroy() {
+    this.triggerTimeout && this.adapter.clearTimeout(this.triggerTimeout);
     this.registered.forEach((r) => this.unregister(r[0]));
   }
   getAssociatedJob(trigger) {

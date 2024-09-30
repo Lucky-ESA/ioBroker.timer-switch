@@ -61,7 +61,7 @@ class IoBrokerStateService {
     });
   }
   delay(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
+    return new Promise((resolve) => this.adapter.setTimeout(resolve, ms));
   }
   checkId(id) {
     if (id == null || id.length === 0) {

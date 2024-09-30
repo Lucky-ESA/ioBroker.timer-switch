@@ -46,7 +46,7 @@ export class IoBrokerStateService implements StateService {
     }
 
     public delay(ms: number): Promise<void> {
-        return new Promise((resolve) => setTimeout(resolve, ms));
+        return new Promise((resolve) => this.adapter.setTimeout(resolve, ms));
     }
 
     private checkId(id: string): void {
