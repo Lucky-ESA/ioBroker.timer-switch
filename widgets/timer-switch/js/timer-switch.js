@@ -34,6 +34,7 @@ vis.binds["timer-switch"] = {
     getElementNameForActionType: getElementNameForActionType,
     onChangeEnabled: onChangeEnabled,
     onValueTypeChange: onValueTypeChange,
+    onDataIdChange: onDataIdChange,
     sendMessage: sendMessage,
     translate: translate,
     addConditionToAction: addConditionToAction,
@@ -218,6 +219,24 @@ function createOnOffWidget(widgetId, view, data, style) {
         element.style.setProperty("--ts-widget-condition-font-size", data.fsCondition ? data.fsCondition : "1em");
     }
     widgetElement.appendChild(element);
+}
+
+/**
+ * Gets triggered by vis editor when dataId value changes.
+ */
+function onDataIdChange(widgetId, view, newId, attr, isCss, oldId) {
+    console.log("onDataIdChange");
+    console.log("widgetId: " + widgetId);
+    console.log("view: " + view);
+    if (newId) console.log("newId: " + newId);
+    if (attr) console.log("attr: " + attr);
+    if (isCss) console.log("isCss: " + isCss);
+    if (oldId) console.log("oldId: " + oldId);
+    if (!vis.views[view].widgets[widgetId].data.bindings) {
+        if (newId) {
+            vis.views[view].widgets[widgetId].data["oid-enabled"] = newId.replace("data", "enabled");
+        }
+    }
 }
 
 function validateOnOffWidgetSettings(widgetElement, data) {
