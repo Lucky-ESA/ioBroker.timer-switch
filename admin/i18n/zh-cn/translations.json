@@ -38,7 +38,7 @@
     "needToEnterValidStringValue": "当类型为字符串时，On/Offvalue 不能为空！",
     "needToSelectDataId": "选择一个时间表数据 ID 以使用该小部件！",
     "needToSelectStateId": "至少选择一个切换状态 ID 才能使用该小部件！",
-    "needToSelectValidDataId": "选择有效的计划数据 ID（使用模式“time-switch.0.onoff.*.data”）！",
+    "needToSelectValidDataId": "选择有效的计划数据 ID（使用模式“timer-switch.0.onoff.*.data”）！",
     "number": "数字",
     "off": "离开",
     "offValue": "关闭价值",
@@ -62,7 +62,7 @@
     "sunset": "日落",
     "switchedType": "开关型",
     "switchedValue": "切换值",
-    "time-switch adapter settings": "时间开关的适配器设置",
+    "timer-switch adapter settings": "时间开关的适配器设置",
     "trigger": "扳机",
     "trigger count": "触发次数",
     "true": "真的",
@@ -108,5 +108,6 @@
     "newAllOff": "更换（全部关闭）",
     "newAllOn": "更换（全部开启）",
     "newOn": "更换（上）",
-    "newOff": "更换（关闭）"
+    "newOff": "更换（关闭）",
+    "needToSelectValidEnabled": "选择有效的计划启用 ID（使用模式“timer-switch.0.onoff.*.enabled”）！"
 }

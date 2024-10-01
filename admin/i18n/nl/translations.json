@@ -38,7 +38,7 @@
     "needToEnterValidStringValue": "Aan/Uit-waarde kan niet leeg zijn als het type string is!",
     "needToSelectDataId": "Selecteer een planningsgegevens-ID om de widget te gebruiken!",
     "needToSelectStateId": "Selecteer ten minste één geschakelde status-ID om de widget te gebruiken!",
-    "needToSelectValidDataId": "Selecteer een geldig schemagegevens-ID (met patroon 'time-switch.0.onoff.*.data')!",
+    "needToSelectValidDataId": "Selecteer een geldig schemagegevens-ID (met patroon 'timer-switch.0.onoff.*.data')!",
     "number": "nummer",
     "off": "Uit",
     "offValue": "Waarde voor uit",
@@ -62,7 +62,7 @@
     "sunset": "Zonsondergang",
     "switchedType": "Geschakeld type",
     "switchedValue": "Geschakelde waarde",
-    "time-switch adapter settings": "Adapterinstellingen voor schakelklok",
+    "timer-switch adapter settings": "Adapterinstellingen voor schakelklok",
     "trigger": "Trekker",
     "trigger count": "Triggertelling",
     "true": "WAAR",
@@ -108,5 +108,6 @@
     "newAllOff": "Vervangen (alles uit)",
     "newAllOn": "Vervangen (alles aan)",
     "newOn": "Vervangen (aan)",
-    "newOff": "Vervangen (uit)"
+    "newOff": "Vervangen (uit)",
+    "needToSelectValidEnabled": "Selecteer een geldig schema-geactiveerd ID (met patroon 'timer-switch.0.onoff.*.enabled')!"
 }

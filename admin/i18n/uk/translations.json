@@ -38,7 +38,7 @@
     "needToEnterValidStringValue": "Значення On/Off не може бути пустим, якщо типом є рядок!",
     "needToSelectDataId": "Виберіть ідентифікатор даних розкладу, щоб використовувати віджет!",
     "needToSelectStateId": "Виберіть хоча б один ідентифікатор переключеного стану, щоб використовувати віджет!",
-    "needToSelectValidDataId": "Виберіть дійсний ідентифікатор даних розкладу (із шаблоном 'time-switch.0.onoff.*.data')!",
+    "needToSelectValidDataId": "Виберіть дійсний ідентифікатор даних розкладу (із шаблоном 'timer-switch.0.onoff.*.data')!",
     "number": "номер",
     "off": "Вимкнено",
     "offValue": "Значення для викл",
@@ -62,7 +62,7 @@
     "sunset": "Захід сонця",
     "switchedType": "Комутований тип",
     "switchedValue": "Переключене значення",
-    "time-switch adapter settings": "Налаштування адаптера для таймера",
+    "timer-switch adapter settings": "Налаштування адаптера для таймера",
     "trigger": "Тригер",
     "trigger count": "Кількість тригерів",
     "true": "правда",
@@ -108,5 +108,6 @@
     "newAllOff": "Замінити (все вимкнено)",
     "newAllOn": "Замінити (все включено)",
     "newOn": "Замінити (на)",
-    "newOff": "Замінити (вимкнено)"
+    "newOff": "Замінити (вимкнено)",
+    "needToSelectValidEnabled": "Виберіть дійсний ідентифікатор увімкненого розкладу (із шаблоном 'timer-switch.0.onoff.*.enabled')!"
 }

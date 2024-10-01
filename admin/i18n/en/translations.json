@@ -38,7 +38,7 @@
     "needToEnterValidStringValue": "On/Offvalue cannot be empty when type is string!",
     "needToSelectDataId": "Select a schedule data id to use the widget!",
     "needToSelectStateId": "Select at least one switched state id to use the widget!",
-    "needToSelectValidDataId": "Select a valid schedule data id (with pattern 'time-switch.0.onoff.*.data')!",
+    "needToSelectValidDataId": "Select a valid schedule data id (with pattern 'timer-switch.0.onoff.*.data')!",
     "number": "number",
     "off": "Off",
     "offValue": "Value for off",
@@ -62,7 +62,7 @@
     "sunset": "Sunset",
     "switchedType": "Switched type",
     "switchedValue": "Switched value",
-    "time-switch adapter settings": "Adapter settings for time-switch",
+    "timer-switch adapter settings": "Adapter settings for time-switch",
     "trigger": "Trigger",
     "trigger count": "Trigger count",
     "true": "true",
@@ -108,5 +108,6 @@
     "newAllOff": "Replace (All off)",
     "newAllOn": "Replace (All on)",
     "newOn": "Replace (on)",
-    "newOff": "Replace (off)"
+    "newOff": "Replace (off)",
+    "needToSelectValidEnabled": "Select a valid schedule enabled id (with pattern 'timer-switch.0.onoff.*.enabled')!"
 }

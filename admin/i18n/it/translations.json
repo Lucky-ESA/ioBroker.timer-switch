@@ -38,7 +38,7 @@
     "needToEnterValidStringValue": "Il valore On/Off non può essere vuoto quando il tipo è una stringa!",
     "needToSelectDataId": "Seleziona un ID dati di pianificazione per utilizzare il widget!",
     "needToSelectStateId": "Seleziona almeno un ID di stato commutato per utilizzare il widget!",
-    "needToSelectValidDataId": "Seleziona un ID dati di pianificazione valido (con il modello 'time-switch.0.onoff.*.data')!",
+    "needToSelectValidDataId": "Seleziona un ID dati di pianificazione valido (con il modello 'timer-switch.0.onoff.*.data')!",
     "number": "numero",
     "off": "Spento",
     "offValue": "Valore disattivato",
@@ -62,7 +62,7 @@
     "sunset": "Tramonto",
     "switchedType": "Tipo commutato",
     "switchedValue": "Valore commutato",
-    "time-switch adapter settings": "Impostazioni dell'adattatore per l'interruttore orario",
+    "timer-switch adapter settings": "Impostazioni dell'adattatore per l'interruttore orario",
     "trigger": "Grilletto",
     "trigger count": "Conteggio trigger",
     "true": "VERO",
@@ -108,5 +108,6 @@
     "newAllOff": "Sostituisci (tutto spento)",
     "newAllOn": "Sostituisci (tutto attivo)",
     "newOn": "Sostituisci (attivato)",
-    "newOff": "Sostituisci (disattivato)"
+    "newOff": "Sostituisci (disattivato)",
+    "needToSelectValidEnabled": "Seleziona un ID abilitato per la pianificazione valido (con il modello 'timer-switch.0.onoff.*.enabled')!"
 }

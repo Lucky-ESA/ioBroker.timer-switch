@@ -32,7 +32,6 @@ vis.binds["timer-switch"] = {
     getConditionStateIdsAndAlias: getConditionStateIdsAndAlias,
     getElementNameForTriggerType: getElementNameForTriggerType,
     getElementNameForActionType: getElementNameForActionType,
-    onChangeEnabled: onChangeEnabled,
     onValueTypeChange: onValueTypeChange,
     onDataIdChange: onDataIdChange,
     sendMessage: sendMessage,
@@ -78,26 +77,6 @@ function onValueTypeChange(widgetId, view, newId, attr, isCss, oldId) {
     if (attr) console.log("attr: " + attr);
     if (isCss) console.log("isCss: " + isCss);
     if (oldId) console.log("oldId: " + oldId);
-}
-
-/**
- * Check Enabled with ID.
- */
-function onChangeEnabled(widgetId, view, newId, attr, isCss, oldId) {
-    console.log("onChangeEnabled");
-    console.log("widgetId: " + widgetId);
-    console.log("view: " + view);
-    if (newId) console.log("newId: " + newId);
-    if (attr) console.log("attr: " + attr);
-    if (isCss) console.log("isCss: " + isCss);
-    if (oldId) console.log("oldId: " + oldId);
-    const enabled = newId ? newId.split(".") : [];
-    const dataId = vis.views[view].widgets[widgetId].data["oid-dataId"];
-    console.log("enabled: " + enabled);
-    console.log("dataId: " + dataId);
-    if (enabled[3] !== dataId[3]) {
-        console.error("WRONG ENABLED ID!!!!");
-    }
 }
 
 function createOnOffWidget(widgetId, view, data, style) {
@@ -184,7 +163,10 @@ function createOnOffWidget(widgetId, view, data, style) {
             data.fcAstroShift ? data.fcAstroShift : "#5d5d5d",
         );
         element.style.setProperty("--ts-widget-condition-fg-color", data.fcCondition ? data.fcCondition : "white");
-        //element.style.setProperty("--ts-widget-font-family", data.fFamily ? data.fFamily : "'Roboto', 'Segoe UI', BlinkMacSystemFont, system-ui, -apple-system");
+        element.style.setProperty(
+            "--ts-widget-font-family",
+            data.fFamily ? data.fFamily : "'Roboto', 'Segoe UI', BlinkMacSystemFont, system-ui, -apple-system",
+        );
         element.style.setProperty("--ts-widget-name-font-size", data.fsName ? data.fsName : "2em");
         element.style.setProperty("--ts-widget-oid-font-size", data.fsSwitched ? data.fsSwitched : "15px");
         element.style.setProperty(
@@ -266,6 +248,10 @@ function validateOnOffWidgetSettings(widgetElement, data) {
             showWarningInWidget(widgetElement, "needToEnterValidStringValue");
             return false;
         }
+    }
+    if (!(data["oid-enabled"].startsWith("timer-switch.0.onoff") && data["oid-enabled"].endsWith("enabled"))) {
+        showWarningInWidget(widgetElement, "needToSelectValidEnabled");
+        return false;
     }
     return true;
 }

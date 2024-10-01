@@ -38,7 +38,7 @@
     "needToEnterValidStringValue": "¡El valor On/Off no puede estar vacío cuando el tipo es cadena!",
     "needToSelectDataId": "¡Seleccione una identificación de datos de programación para usar el widget!",
     "needToSelectStateId": "¡Seleccione al menos una identificación de estado cambiada para usar el widget!",
-    "needToSelectValidDataId": "¡Seleccione una identificación de datos de programación válida (con el patrón 'time-switch.0.onoff.*.data')!",
+    "needToSelectValidDataId": "¡Seleccione una identificación de datos de programación válida (con el patrón 'timer-switch.0.onoff.*.data')!",
     "number": "número",
     "off": "Apagado",
     "offValue": "Valor de descuento",
@@ -62,7 +62,7 @@
     "sunset": "Atardecer",
     "switchedType": "tipo conmutado",
     "switchedValue": "Valor conmutado",
-    "time-switch adapter settings": "Configuración del adaptador para interruptor horario",
+    "timer-switch adapter settings": "Configuración del adaptador para interruptor horario",
     "trigger": "Desencadenar",
     "trigger count": "Recuento de disparadores",
     "true": "verdadero",
@@ -108,5 +108,6 @@
     "newAllOff": "Reemplazar (todo apagado)",
     "newAllOn": "Reemplazar (Todo activado)",
     "newOn": "Reemplazar (activado)",
-    "newOff": "Reemplazar (apagado)"
+    "newOff": "Reemplazar (apagado)",
+    "needToSelectValidEnabled": "¡Seleccione una identificación habilitada para programación válida (con el patrón 'timer-switch.0.onoff.*.enabled')!"
 }

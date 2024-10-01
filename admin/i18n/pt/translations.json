@@ -38,7 +38,7 @@
     "needToEnterValidStringValue": "On/Offvalue não pode ficar vazio quando o tipo é string!",
     "needToSelectDataId": "Selecione um ID de dados de agendamento para usar o widget!",
     "needToSelectStateId": "Selecione pelo menos um ID de estado alterado para usar o widget!",
-    "needToSelectValidDataId": "Selecione um ID de dados de agendamento válido (com padrão 'time-switch.0.onoff.*.data')!",
+    "needToSelectValidDataId": "Selecione um ID de dados de agendamento válido (com padrão 'timer-switch.0.onoff.*.data')!",
     "number": "número",
     "off": "Desligado",
     "offValue": "Valor para desligar",
@@ -62,7 +62,7 @@
     "sunset": "Pôr do sol",
     "switchedType": "Tipo comutado",
     "switchedValue": "Valor trocado",
-    "time-switch adapter settings": "Configurações do adaptador para interruptor horário",
+    "timer-switch adapter settings": "Configurações do adaptador para interruptor horário",
     "trigger": "Acionar",
     "trigger count": "Contagem de gatilhos",
     "true": "verdadeiro",
@@ -108,5 +108,6 @@
     "newAllOff": "Substituir (tudo desligado)",
     "newAllOn": "Substituir (tudo ativado)",
     "newOn": "Substituir (ativado)",
-    "newOff": "Substituir (desligado)"
+    "newOff": "Substituir (desligado)",
+    "needToSelectValidEnabled": "Selecione um ID válido de agendamento habilitado (com o padrão 'timer-switch.0.onoff.*.enabled')!"
 }

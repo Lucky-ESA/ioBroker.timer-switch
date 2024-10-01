@@ -38,7 +38,7 @@
     "needToEnterValidStringValue": "La valeur On/Off ne peut pas être vide lorsque le type est une chaîne !",
     "needToSelectDataId": "Sélectionnez un identifiant de données de planification pour utiliser le widget !",
     "needToSelectStateId": "Sélectionnez au moins un identifiant d'état commuté pour utiliser le widget !",
-    "needToSelectValidDataId": "Sélectionnez un identifiant de données de planification valide (avec le modèle 'time-switch.0.onoff.*.data') !",
+    "needToSelectValidDataId": "Sélectionnez un identifiant de données de planification valide (avec le modèle 'timer-switch.0.onoff.*.data') !",
     "number": "nombre",
     "off": "Désactivé",
     "offValue": "Valeur pour off",
@@ -62,7 +62,7 @@
     "sunset": "Coucher de soleil",
     "switchedType": "Type commuté",
     "switchedValue": "Valeur commutée",
-    "time-switch adapter settings": "Paramètres de l'adaptateur pour la minuterie",
+    "timer-switch adapter settings": "Paramètres de l'adaptateur pour la minuterie",
     "trigger": "Déclenchement",
     "trigger count": "Nombre de déclencheurs",
     "true": "vrai",
@@ -108,5 +108,6 @@
     "newAllOff": "Remplacer (tout éteint)",
     "newAllOn": "Remplacer (Tout activé)",
     "newOn": "Remplacer (activé)",
-    "newOff": "Remplacer (désactivé)"
+    "newOff": "Remplacer (désactivé)",
+    "needToSelectValidEnabled": "Sélectionnez un identifiant d'activation de programmation valide (avec le modèle 'timer-switch.0.onoff.*.enabled') !"
 }

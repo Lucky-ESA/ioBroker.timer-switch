@@ -38,7 +38,7 @@
     "needToEnterValidStringValue": "Der Ein/Aus-Wert darf nicht leer sein, wenn der Typ ein String ist!",
     "needToSelectDataId": "Wählen Sie eine Zeitplandaten-ID aus, um das Widget zu verwenden!",
     "needToSelectStateId": "Wählen Sie mindestens eine Switch-State-ID aus, um das Widget zu verwenden!",
-    "needToSelectValidDataId": "Wählen Sie eine gültige Zeitplandaten-ID (mit Muster „time-switch.0.onoff.*.data“)!",
+    "needToSelectValidDataId": "Wählen Sie eine gültige Zeitplandaten-ID (mit Muster „timer-switch.0.onoff.*.data“)!",
     "number": "Nummer",
     "off": "Aus",
     "offValue": "Preis-Leistungs-Verhältnis",
@@ -62,7 +62,7 @@
     "sunset": "Sonnenuntergang",
     "switchedType": "Geschalteter Typ",
     "switchedValue": "Geschalteter Wert",
-    "time-switch adapter settings": "Adaptereinstellungen für Zeitschaltuhr",
+    "timer-switch adapter settings": "Adaptereinstellungen für Zeitschaltuhr",
     "trigger": "Auslösen",
     "trigger count": "Triggeranzahl",
     "true": "WAHR",
@@ -108,5 +108,6 @@
     "newAllOff": "Ersetzen (Alles aus)",
     "newAllOn": "Ersetzen (Alles aktiviert)",
     "newOn": "Ersetzen (ein)",
-    "newOff": "Ersetzen (aus)"
+    "newOff": "Ersetzen (aus)",
+    "needToSelectValidEnabled": "Wählen Sie eine gültige Zeitplan-aktivierte ID (mit dem Muster „timer-switch.0.onoff.*.enabled“)!"
 }

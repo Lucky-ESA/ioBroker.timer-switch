@@ -9,7 +9,8 @@
 
 [![NPM](https://nodei.co/npm/iobroker.timer-switch.png?downloads=true)](https://nodei.co/npm/iobroker.timer-switch/)
 
-**Tests:** ![Test and Release](https://github.com/Lucky_ESA/ioBroker.timer-switch/workflows/Test%20and%20Release/badge.svg)
+**Tests:**
+[![Test and Release](https://github.com/Lucky-ESA/ioBroker.timer-switch/actions/workflows/test-and-release.yml/badge.svg)](https://github.com/Lucky-ESA/ioBroker.timer-switch/actions/workflows/test-and-release.yml)
 
 ## timer-switch adapter for ioBroker
 
@@ -21,6 +22,11 @@ Plan your own schedules
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+
+-   (Lucky_ESA) Bugfix
+
 ### 1.0.0 (2024-09-30)
 
 -   (Lucky_ESA) Added rename

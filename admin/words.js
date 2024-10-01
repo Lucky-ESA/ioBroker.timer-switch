@@ -510,17 +510,30 @@ systemDictionary = {
         "zh-cn": "选择至少一个切换状态ID以使用小部件！"
     },
     "needToSelectValidDataId": {
-        "en": "Select a valid schedule data id (with pattern 'time-switch.0.onoff.*.data')!",
-        "de": "Wählen Sie eine gültige Schaltplandaten Id (mit dem Muster 'time-switch.0.onoff.*.data')!",
-        "ru": "Выберите действительный идентификатор данных расписания (с шаблоном 'time-switch.0.onoff. *. Data')!",
-        "pt": "Selecione um ID de dados de programação válido (com o padrão 'time-switch.0.onoff. *. Data')!",
-        "nl": "Selecteer een geldige data-ID voor het schema (met patroon 'time-switch.0.onoff. *. Data')!",
-        "fr": "Sélectionnez un identifiant de données de planification valide (avec le modèle 'time-switch.0.onoff. *. Data')!",
-        "it": "Selezionare un ID dati di pianificazione valido (con il modello 'time-switch.0.onoff. *. Data')!",
-        "es": "¡Seleccione una identificación de datos de programación válida (con el patrón 'time-switch.0.onoff. *. Data')!",
-        "pl": "Wybierz prawidłowy identyfikator danych harmonogramu (ze wzorcem „time-switch.0.onoff. *. Data”)!",
-        "uk": "Виберіть дійсний ідентифікатор даних розкладу (із шаблоном 'time-switch.0.onoff.*.data')!",
-        "zh-cn": "选择一个有效的计划数据ID（使用模式“ time-switch.0.onoff。*。data”）！"
+        "en": "Select a valid schedule data id (with pattern 'timer-switch.0.onoff.*.data')!",
+        "de": "Wählen Sie eine gültige Schaltplandaten Id (mit dem Muster 'timer-switch.0.onoff.*.data')!",
+        "ru": "Выберите действительный идентификатор данных расписания (с шаблоном 'timer-switch.0.onoff. *. Data')!",
+        "pt": "Selecione um ID de dados de programação válido (com o padrão 'timer-switch.0.onoff. *. Data')!",
+        "nl": "Selecteer een geldige data-ID voor het schema (met patroon 'timer-switch.0.onoff. *. Data')!",
+        "fr": "Sélectionnez un identifiant de données de planification valide (avec le modèle 'timer-switch.0.onoff. *. Data')!",
+        "it": "Selezionare un ID dati di pianificazione valido (con il modello 'timer-switch.0.onoff. *. Data')!",
+        "es": "¡Seleccione una identificación de datos de programación válida (con el patrón 'timer-switch.0.onoff. *. Data')!",
+        "pl": "Wybierz prawidłowy identyfikator danych harmonogramu (ze wzorcem „timer-switch.0.onoff. *. Data”)!",
+        "uk": "Виберіть дійсний ідентифікатор даних розкладу (із шаблоном 'timer-switch.0.onoff.*.data')!",
+        "zh-cn": "选择一个有效的计划数据ID（使用模式“ timer-switch.0.onoff。*。data”）！"
+    },
+    "needToSelectValidEnabled": {
+        "en": "Select a valid schedule enabled id (with pattern 'timer-switch.0.onoff.*.enabled')!",
+        "de": "Wählen Sie einen gültigen Zeitplan aktivierer id (mit Muster 'timer-switch.0.onoff.*.enabled')!",
+        "ru": "Выберите действительный график включен id (с шаблоном 'timer-switch.0.onoff.*.enbled')!",
+        "pt": "Selecione um programa válido habilitado id (com padrão 'timer-switch.0.onoff.*.enabled')!",
+        "nl": "Selecteer een geldig schema ingeschakeld id (met patroon 'timer-switch.0.onoff.*.enabled')!",
+        "fr": "Sélectionnez un programme valide activé id (avec motif 'timer-switch.0.onoff.*.enabled') !",
+        "it": "Selezionare un programma valido abilitato id (con modello 'timer-switch.0.onoff.*.enabled')!",
+        "es": "Seleccione un calendario válido habilitado id (con patrón 'timer-switch.0.onoff.*.enabled')!",
+        "pl": "Wybierz poprawny identyfikator programu (ze wzorem 'timer- change.0.onoff. * .acted')!",
+        "uk": "Виберіть дійсний графік ввімкнений id (з шаблоном 'timer-switch.0.onoff.*.enabled')!",
+        "zh-cn": "选择一个启用的有效时刻表 ID( 模式“ timr- switch. 0. off. *. applied” ) !"
     },
     "number": {
         "en": "number",
@@ -808,18 +821,18 @@ systemDictionary = {
         "uk": "Переключене значення",
         "zh-cn": "切换值"
     },
-    "time-switch adapter settings": {
-        "en": "Adapter settings for time-switch",
-        "de": "Adaptereinstellungen für time-switch",
-        "ru": "Настройки адаптера для time-switch",
-        "pt": "Configurações do adaptador para time-switch",
-        "nl": "Adapterinstellingen voor time-switch",
-        "fr": "Paramètres d'adaptateur pour time-switch",
-        "it": "Impostazioni dell'adattatore per time-switch",
-        "es": "Ajustes del adaptador para time-switch",
-        "pl": "Ustawienia adaptera dla time-switch",
+    "timer-switch adapter settings": {
+        "en": "Adapter settings for timer-switch",
+        "de": "Adaptereinstellungen für timer-switch",
+        "ru": "Настройки адаптера для timer-switch",
+        "pt": "Configurações do adaptador para timer-switch",
+        "nl": "Adapterinstellingen voor timer-switch",
+        "fr": "Paramètres d'adaptateur pour timer-switch",
+        "it": "Impostazioni dell'adattatore per timer-switch",
+        "es": "Ajustes del adaptador para timer-switch",
+        "pl": "Ustawienia adaptera dla timer-switch",
         "uk": "Налаштування адаптера для таймера",
-        "zh-cn": "time-switch的适配器设置"
+        "zh-cn": "timer-switch的适配器设置"
     },
     "trigger": {
         "en": "Trigger",
