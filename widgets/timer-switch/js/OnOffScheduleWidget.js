@@ -137,23 +137,17 @@
             const newSettings = vis.widgets[this.widgetId].data;
             this.settings = newSettings;
             console.log("newSettings.showId: " + newSettings.showId);
-            console.log("newSettings.statesCount: " + newSettings.statesCount);
             if (newSettings.showId && newSettings.statesCount === "1") {
                 this.sr.querySelector("#switched-oid").textContent = newSettings["oid-stateId1"];
             }
             const oldSettings = vis.binds["timer-switch"].onOffScheduleWidgets[this.widgetId];
-            console.log("old settings: " + JSON.stringify(oldSettings));
-            console.log("newSettings: " + JSON.stringify(newSettings));
             this.detectSettingsChanges(oldSettings, newSettings);
             this.updateStoredSettings(newSettings);
             console.log("this.settings.dataId: " + this.settings["oid-dataId"]);
-            console.log("STATE: " + vis.states.attr(`${this.settings["oid-dataId"]}.val`));
-            console.log("STATE: " + JSON.stringify(vis.states.attr()));
             if (vis.states.attr(`${this.settings["oid-dataId"]}.val`)) {
                 this.onScheduleDataChange(JSON.parse(vis.states.attr(`${this.settings["oid-dataId"]}.val`)));
             }
             this.enabled = vis.states.attr(`${this.settings["oid-enabled"]}.val`);
-            console.log("this.enabled1: " + JSON.stringify(vis.states.attr()));
             console.log("this.enabled: " + this.enabled);
             vis.states.bind(`${newSettings["oid-dataId"]}.val`, (e, newVal) => {
                 const scheduleData = JSON.parse(newVal);
@@ -250,8 +244,6 @@
 
         detectSettingsChanges(oldSettings, newSettings) {
             console.log("detectSettingsChanges");
-            console.log("new settings");
-            console.log(newSettings);
             const newStateIds = this.getStateIdsFromSettings(newSettings);
             if (
                 !oldSettings ||

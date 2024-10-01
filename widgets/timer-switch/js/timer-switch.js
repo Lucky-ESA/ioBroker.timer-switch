@@ -14,7 +14,6 @@ $.get("../timer-switch.admin/words.js", function (script) {
     let translation = script.substring(script.indexOf("{"), script.length);
     translation = translation.substring(0, translation.lastIndexOf(";"));
     try {
-        console.log("translation: " + translation);
         timeSwitchDic = JSON.parse(translation);
         $.extend(systemDictionary, iobSystemDic);
         $.extend(systemDictionary, timeSwitchDic);
@@ -32,7 +31,6 @@ vis.binds["timer-switch"] = {
     getConditionStateIdsAndAlias: getConditionStateIdsAndAlias,
     getElementNameForTriggerType: getElementNameForTriggerType,
     getElementNameForActionType: getElementNameForActionType,
-    onValueTypeChange: onValueTypeChange,
     onDataIdChange: onDataIdChange,
     sendMessage: sendMessage,
     translate: translate,
@@ -47,8 +45,6 @@ function showVersion() {
 }
 
 function sendMessage(cmd, data) {
-    console.log("cmd: " + cmd);
-    console.log("cmddata: " + JSON.stringify(data));
     const sendto = {
         command: cmd,
         message: data,
@@ -66,19 +62,6 @@ function translate(word) {
     return translateWord(word, systemLang, timeSwitchDic);
 }
 
-/**
- * Check value type.
- */
-function onValueTypeChange(widgetId, view, newId, attr, isCss, oldId) {
-    console.log("onValueTypeChange");
-    console.log("widgetId: " + widgetId);
-    console.log("view: " + view);
-    if (newId) console.log("newId: " + newId);
-    if (attr) console.log("attr: " + attr);
-    if (isCss) console.log("isCss: " + isCss);
-    if (oldId) console.log("oldId: " + oldId);
-}
-
 function createOnOffWidget(widgetId, view, data, style) {
     console.debug(`Create on/off widget ${widgetId}`);
     console.log(data);
@@ -94,11 +77,8 @@ function createOnOffWidget(widgetId, view, data, style) {
         return;
     }
     console.debug(`validateOnOffWidgetSettings`);
-    console.info("data.newOn: " + data.newOn);
     if (data.newOn != "") {
-        console.info("data.newOn1: " + data.newOn);
         if (timeSwitchDic && timeSwitchDic.on && timeSwitchDic.on[systemLang]) {
-            console.info("data.newOn2: " + data.newOn);
             timeSwitchDic.on[systemLang] = data.newOn;
         }
     }
@@ -249,7 +229,10 @@ function validateOnOffWidgetSettings(widgetElement, data) {
             return false;
         }
     }
-    if (!(data["oid-enabled"].startsWith("timer-switch.0.onoff") && data["oid-enabled"].endsWith("enabled"))) {
+    if (
+        data["oid-enabled"] == null ||
+        !(data["oid-enabled"].startsWith("timer-switch.0.onoff") && data["oid-enabled"].endsWith("enabled"))
+    ) {
         showWarningInWidget(widgetElement, "needToSelectValidEnabled");
         return false;
     }
