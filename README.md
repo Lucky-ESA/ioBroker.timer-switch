@@ -26,6 +26,7 @@ Plan your own schedules
 ### **WORK IN PROGRESS**
 
 -   (Lucky_ESA) Bugfix
+-   (Lucky_ESA) Fixed multiple renames
 
 ### 1.0.0 (2024-09-30)
 
