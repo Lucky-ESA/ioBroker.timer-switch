@@ -13,10 +13,10 @@
         }
 
         connectedCallback() {
-            console.log("connectedCallback: " + this.connected);
             if (this.connected) {
                 return;
             }
+            this.rename();
             this.sr.querySelector("#btn-add-trigger-dropdown").addEventListener("click", (e) => {
                 const dropdown = this.sr.querySelector("#add-trigger-dropdown");
                 dropdown.classList.add("show");
@@ -57,7 +57,6 @@
         }
 
         attributeChangedCallback(attr) {
-            console.log("attributeChangedCallback widgetid: " + attr);
             if (attr === "widgetid") {
                 this.onWidgetIdChange();
             }
@@ -132,6 +131,17 @@
             }
         }
 
+        rename() {
+            this.sr.querySelector(`#manual-on`).textContent = vis.binds["timer-switch"].translate(
+                "allOn",
+                this.getAttribute("widgetid"),
+            );
+            this.sr.querySelector(`#manual-off`).textContent = vis.binds["timer-switch"].translate(
+                "allOff",
+                this.getAttribute("widgetid"),
+            );
+        }
+
         onWidgetIdChange() {
             console.log("widget id change");
             const newSettings = vis.widgets[this.widgetId].data;
@@ -169,19 +179,16 @@
         }
 
         onScheduleDataChange(newData) {
-            console.log("onScheduleDataChange");
             if (newData == null) return;
             this.name = newData.name;
             this.triggers = newData.triggers;
         }
 
         onEditNameClick() {
-            console.log("onEditNameClick");
             this.nameEditMode = true;
         }
 
         onSaveNameClick() {
-            console.log("onSaveNameClick");
             const newName = this.sr.querySelector(".heading .edit input").value;
             vis.binds["timer-switch"].sendMessage("change-name", {
                 dataId: this.settings["oid-dataId"],
@@ -191,7 +198,6 @@
         }
 
         onManualClick(e) {
-            console.log("onManualClick");
             const stateIds = this.getStateIdsFromSettings(this.settings);
             const valueType = this.settings.valueType;
             const isOnClick = e.target.id === "manual-on";
@@ -205,7 +211,6 @@
         }
 
         onTriggerDelete(triggerId) {
-            console.log("onTriggerDelete");
             vis.binds["timer-switch"].sendMessage("delete-trigger", {
                 dataId: this.settings["oid-dataId"],
                 triggerId: triggerId,
@@ -213,7 +218,6 @@
         }
 
         onTriggerUpdate(trigger) {
-            console.log("onTriggerUpdate");
             vis.binds["timer-switch"].sendMessage("update-trigger", {
                 dataId: this.settings["oid-dataId"],
                 trigger: trigger,
@@ -233,17 +237,19 @@
         }
 
         updateStoredSettings(newSettings) {
-            console.log("updateStoredSettings");
             vis.binds["timer-switch"].onOffScheduleWidgets[this.widgetId] = {
                 onValue: newSettings.onValue,
                 offValue: newSettings.offValue,
                 stateIds: this.getStateIdsFromSettings(newSettings),
                 valueType: newSettings.valueType,
+                on: newSettings.newOn,
+                off: newSettings.newOff,
+                allOn: newSettings.newAllOn,
+                allOff: newSettings.newAllOff,
             };
         }
 
         detectSettingsChanges(oldSettings, newSettings) {
-            console.log("detectSettingsChanges");
             const newStateIds = this.getStateIdsFromSettings(newSettings);
             if (
                 !oldSettings ||
@@ -279,7 +285,6 @@
         }
 
         getStateIdsFromSettings(settings) {
-            console.log("getStateIdsFromSettings");
             const count = Number.parseInt(settings.statesCount, 10);
             const ids = [];
             for (let i = 1; i <= count; i++) {
@@ -327,7 +332,6 @@
         }
 
         createShadowRoot() {
-            console.log("createShadowRoot");
             const shadowRoot = this.attachShadow({ mode: "open" });
             shadowRoot.innerHTML = `
 				<link rel="stylesheet" href="widgets/timer-switch/css/material-toggle-switch.css" />
@@ -355,8 +359,8 @@
 					</div>
 					<div class="manual-container multiple" style="display: none;">
 						<p>${vis.binds["timer-switch"].translate("manualSwitching")}</p>
-						<button class="material-button" id="manual-on">${vis.binds["timer-switch"].translate("allOn")}</button>
-						<button class="material-button" id="manual-off">${vis.binds["timer-switch"].translate("allOff")}</button>
+						<button class="material-button" id="manual-on"><div id="manual-on-value">${vis.binds["timer-switch"].translate("allOn")}</div></button>
+						<button class="material-button" id="manual-off"><div id="manual-off-value">${vis.binds["timer-switch"].translate("allOff")}</div></button>
 					</div>
 					<div class="manual-container single" style="display: none;">
 						<div id="manual" class="md-switch-container">

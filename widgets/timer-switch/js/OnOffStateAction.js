@@ -8,6 +8,14 @@
         connectedCallback() {
             this.sr.querySelector("#radio-on").addEventListener("input", this.onValueInput.bind(this));
             this.sr.querySelector("#radio-off").addEventListener("input", this.onValueInput.bind(this));
+            this.sr.querySelector(`#radio-on-value`).textContent = vis.binds["timer-switch"].translate(
+                "on",
+                this.getAttribute("widgetid"),
+            );
+            this.sr.querySelector(`#radio-off-value`).textContent = vis.binds["timer-switch"].translate(
+                "off",
+                this.getAttribute("widgetid"),
+            );
         }
 
         static get observedAttributes() {
@@ -44,7 +52,9 @@
 
         onValueChanged() {
             const newValue = this.value;
-            const text = vis.binds["timer-switch"].translate(newValue ? "on" : "off").toUpperCase();
+            const text = vis.binds["timer-switch"]
+                .translate(newValue ? "on" : "off", this.getAttribute("widgetid"))
+                .toUpperCase();
             this.sr.querySelector(".view .value").textContent = text;
             this.sr.querySelector(`#radio-${newValue ? "on" : "off"}`).checked = true;
         }
@@ -74,11 +84,11 @@
 				<div class="container edit" style="display: none">
                     <div class="md-radio md-radio-inline">
 						<input id="radio-on" type="radio" name="switched-value-group">
-						<label for="radio-on">${vis.binds["timer-switch"].translate("on")}</label>
+						<label for="radio-on" id="radio-on-value"></label>
 					</div>
 					<div class="md-radio md-radio-inline">
 						<input id="radio-off" type="radio" name="switched-value-group">
-						<label for="radio-off">${vis.binds["timer-switch"].translate("off")}</label>
+						<label for="radio-off" id="radio-off-value"></label>
 					</div>
 				</div>
 			`;

@@ -50,7 +50,6 @@ function sendMessage(cmd, data) {
         message: data,
     };
     console.log("cmdsend: " + JSON.stringify(sendto));
-    //vis.setValue('timer-switch.0.sendto', JSON.stringify(sendto), false);
     try {
         servConn._socket.emit("sendTo", "timer-switch", cmd, data);
     } catch (e) {
@@ -58,13 +57,18 @@ function sendMessage(cmd, data) {
     }
 }
 
-function translate(word) {
+function translate(word, widgetid) {
+    if (widgetid) {
+        const newValue = vis.binds["timer-switch"].onOffScheduleWidgets[widgetid]
+            ? vis.binds["timer-switch"].onOffScheduleWidgets[widgetid][word]
+            : null;
+        if (newValue != null && newValue != "") return newValue;
+    }
     return translateWord(word, systemLang, timeSwitchDic);
 }
 
 function createOnOffWidget(widgetId, view, data, style) {
     console.debug(`Create on/off widget ${widgetId}`);
-    console.log(data);
     const widgetElement = document.querySelector(`#${widgetId}`);
     if (!widgetElement) {
         console.warn("Widget not found, waiting ...");
@@ -75,27 +79,6 @@ function createOnOffWidget(widgetId, view, data, style) {
 
     if (!validateOnOffWidgetSettings(widgetElement, data)) {
         return;
-    }
-    console.debug(`validateOnOffWidgetSettings`);
-    if (data.newOn != "") {
-        if (timeSwitchDic && timeSwitchDic.on && timeSwitchDic.on[systemLang]) {
-            timeSwitchDic.on[systemLang] = data.newOn;
-        }
-    }
-    if (data.newOff != "") {
-        if (timeSwitchDic && timeSwitchDic.off && timeSwitchDic.off[systemLang]) {
-            timeSwitchDic.off[systemLang] = data.newOff;
-        }
-    }
-    if (data.newAllOn != "") {
-        if (timeSwitchDic && timeSwitchDic.allOn && timeSwitchDic.allOn[systemLang]) {
-            timeSwitchDic.allOn[systemLang] = data.newAllOn;
-        }
-    }
-    if (data.newAllOff != "") {
-        if (timeSwitchDic && timeSwitchDic.allOff && timeSwitchDic.allOff[systemLang]) {
-            timeSwitchDic.allOff[systemLang] = data.newAllOff;
-        }
     }
     const element = document.createElement("app-on-off-schedules-widget");
     element.setAttribute("widgetid", widgetId);
