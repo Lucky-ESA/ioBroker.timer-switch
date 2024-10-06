@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "timer-switch",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "news": {
+      "1.0.1": {
+        "en": "Bugfix\nFixed multiple renames",
+        "de": "Fehlerbehebung\nMehrere Umbenennungen behoben",
+        "ru": "Bugfix\nИсправлено несколько имен",
+        "pt": "Bugfix\nCorrigido vários renomeamentos",
+        "nl": "Bugfix\nVaste meerdere namen",
+        "fr": "Correction du bogue\nCorrection de plusieurs renoms",
+        "it": "Bugfix\nRinominazioni multiple riparate",
+        "es": "Bugfix\nRenombramientos múltiples fijos",
+        "pl": "Bugfix\nNaprawiono wiele nazw",
+        "uk": "Помилки\nВиправлено декілька назв",
+        "zh-cn": "错误修正\n固定的多个重命名"
+      },
       "1.0.0": {
         "en": "Added rename\nAdded CSS\nBugfix",
         "de": "Nachname\nCSS\nFehlerbehebung",
