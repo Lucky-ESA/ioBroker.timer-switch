@@ -28,7 +28,7 @@
     "authorEmail": "github@luckyskills.de",
     "gitRemoteProtocol": "SSH",
     "gitCommit": "no",
-    "defaultBranch": "master",
+    "defaultBranch": "main",
     "license": "MIT License",
     "dependabot": "yes",
     "creatorVersion": "2.6.5"

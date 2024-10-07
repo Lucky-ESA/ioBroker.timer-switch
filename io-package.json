@@ -1,135 +1,127 @@
 {
-  "common": {
-    "name": "timer-switch",
-    "version": "1.0.1",
-    "news": {
-      "1.0.1": {
-        "en": "Bugfix\nFixed multiple renames",
-        "de": "Fehlerbehebung\nMehrere Umbenennungen behoben",
-        "ru": "Bugfix\nИсправлено несколько имен",
-        "pt": "Bugfix\nCorrigido vários renomeamentos",
-        "nl": "Bugfix\nVaste meerdere namen",
-        "fr": "Correction du bogue\nCorrection de plusieurs renoms",
-        "it": "Bugfix\nRinominazioni multiple riparate",
-        "es": "Bugfix\nRenombramientos múltiples fijos",
-        "pl": "Bugfix\nNaprawiono wiele nazw",
-        "uk": "Помилки\nВиправлено декілька назв",
-        "zh-cn": "错误修正\n固定的多个重命名"
-      },
-      "1.0.0": {
-        "en": "Added rename\nAdded CSS\nBugfix",
-        "de": "Nachname\nCSS\nFehlerbehebung",
-        "ru": "Добавлено переименование\nДобавлен CSS\nBugfix",
-        "pt": "Adicionado renome\nAdicionado CSS\nBugfix",
-        "nl": "Hernoemen toegevoegd\nToegevoegd CSS\nBugfix",
-        "fr": "Ajout du nom\nAjout du CSS\nCorrection du bogue",
-        "it": "Aggiunto il nome\nAggiunto CSS\nBugfix",
-        "es": "Nombre añadido\nCSS\nBugfix",
-        "pl": "Dodano nazwę\nDodano CSS\nBugfix",
-        "uk": "Додати ім'я\nДодано CSS\nПомилки",
-        "zh-cn": "添加重命名\n已添加 CSS\n错误修正"
-      },
-      "0.0.1": {
-        "en": "initial release",
-        "de": "Erstveröffentlichung",
-        "ru": "Начальная версия",
-        "pt": "lançamento inicial",
-        "nl": "Eerste uitgave",
-        "fr": "Première version",
-        "it": "Versione iniziale",
-        "es": "Versión inicial",
-        "pl": "Pierwsze wydanie",
-        "uk": "Початкова версія",
-        "zh-cn": "首次出版"
-      }
+    "common": {
+        "name": "timer-switch",
+        "version": "1.0.1",
+        "news": {
+            "1.0.1": {
+                "en": "Bugfix\nFixed multiple renames",
+                "de": "Fehlerbehebung\nMehrere Umbenennungen behoben",
+                "ru": "Bugfix\nИсправлено несколько имен",
+                "pt": "Bugfix\nCorrigido vários renomeamentos",
+                "nl": "Bugfix\nVaste meerdere namen",
+                "fr": "Correction du bogue\nCorrection de plusieurs renoms",
+                "it": "Bugfix\nRinominazioni multiple riparate",
+                "es": "Bugfix\nRenombramientos múltiples fijos",
+                "pl": "Bugfix\nNaprawiono wiele nazw",
+                "uk": "Помилки\nВиправлено декілька назв",
+                "zh-cn": "错误修正\n固定的多个重命名"
+            },
+            "1.0.0": {
+                "en": "Added rename\nAdded CSS\nBugfix",
+                "de": "Nachname\nCSS\nFehlerbehebung",
+                "ru": "Добавлено переименование\nДобавлен CSS\nBugfix",
+                "pt": "Adicionado renome\nAdicionado CSS\nBugfix",
+                "nl": "Hernoemen toegevoegd\nToegevoegd CSS\nBugfix",
+                "fr": "Ajout du nom\nAjout du CSS\nCorrection du bogue",
+                "it": "Aggiunto il nome\nAggiunto CSS\nBugfix",
+                "es": "Nombre añadido\nCSS\nBugfix",
+                "pl": "Dodano nazwę\nDodano CSS\nBugfix",
+                "uk": "Додати ім'я\nДодано CSS\nПомилки",
+                "zh-cn": "添加重命名\n已添加 CSS\n错误修正"
+            },
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "uk": "Початкова версія",
+                "zh-cn": "首次出版"
+            }
+        },
+        "titleLang": {
+            "en": "timer-switch",
+            "de": "Zeitschaltuhr",
+            "ru": "таймер-переключатель",
+            "pt": "interruptor do temporizador",
+            "nl": "tijdschakelaar",
+            "fr": "minuterie",
+            "it": "timer",
+            "es": "interruptor de temporizador",
+            "pl": "wyłącznik czasowy",
+            "uk": "таймер-перемикач",
+            "zh-cn": "定时开关机"
+        },
+        "desc": {
+            "en": "Plan your own schedules",
+            "de": "Planen Sie Ihre eigenen Zeitpläne",
+            "ru": "Планируйте свои собственные графики",
+            "pt": "Planeje seus próprios horários",
+            "nl": "Plan uw eigen schema's",
+            "fr": "Planifiez vos propres horaires",
+            "it": "Pianifica i tuoi programmi",
+            "es": "Planifica tus propios horarios",
+            "pl": "Planuj własne harmonogramy",
+            "uk": "Плануйте власні розклади",
+            "zh-cn": "规划自己的日程安排"
+        },
+        "authors": ["Lucky_ESA <github@luckyskills.de>"],
+        "keywords": ["schedule", "time", "switch"],
+        "licenseInformation": {
+            "type": "free",
+            "license": "MIT"
+        },
+        "platform": "Javascript/Node.js",
+        "icon": "timer-switch.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/Lucky_ESA/ioBroker.timer-switch/main/admin/timer-switch.png",
+        "readme": "https://github.com/Lucky_ESA/ioBroker.timer-switch/blob/main/README.md",
+        "loglevel": "info",
+        "tier": 3,
+        "mode": "daemon",
+        "type": "date-and-time",
+        "compact": true,
+        "connectionType": "local",
+        "messagebox": true,
+        "dataSource": "push",
+        "restartAdapters": ["vis-2"],
+        "adminUI": {
+            "config": "materialize"
+        },
+        "dependencies": [
+            {
+                "js-controller": ">=6.0.11"
+            }
+        ],
+        "globalDependencies": [
+            {
+                "admin": ">=7.0.23"
+            }
+        ]
     },
-    "titleLang": {
-      "en": "timer-switch",
-      "de": "Zeitschaltuhr",
-      "ru": "таймер-переключатель",
-      "pt": "interruptor do temporizador",
-      "nl": "tijdschakelaar",
-      "fr": "minuterie",
-      "it": "timer",
-      "es": "interruptor de temporizador",
-      "pl": "wyłącznik czasowy",
-      "uk": "таймер-перемикач",
-      "zh-cn": "定时开关机"
+    "native": {
+        "switch_delay": 100,
+        "schedules": {
+            "onOff": []
+        }
     },
-    "desc": {
-      "en": "Plan your own schedules",
-      "de": "Planen Sie Ihre eigenen Zeitpläne",
-      "ru": "Планируйте свои собственные графики",
-      "pt": "Planeje seus próprios horários",
-      "nl": "Plan uw eigen schema's",
-      "fr": "Planifiez vos propres horaires",
-      "it": "Pianifica i tuoi programmi",
-      "es": "Planifica tus propios horarios",
-      "pl": "Planuj własne harmonogramy",
-      "uk": "Плануйте власні розклади",
-      "zh-cn": "规划自己的日程安排"
-    },
-    "authors": [
-      "Lucky_ESA <github@luckyskills.de>"
-    ],
-    "keywords": [
-      "schedule",
-      "time",
-      "switch"
-    ],
-    "licenseInformation": {
-      "type": "free",
-      "license": "MIT"
-    },
-    "platform": "Javascript/Node.js",
-    "icon": "timer-switch.png",
-    "enabled": true,
-    "extIcon": "https://raw.githubusercontent.com/Lucky_ESA/ioBroker.timer-switch/master/admin/timer-switch.png",
-    "readme": "https://github.com/Lucky_ESA/ioBroker.timer-switch/blob/master/README.md",
-    "loglevel": "info",
-    "tier": 3,
-    "mode": "daemon",
-    "type": "date-and-time",
-    "compact": true,
-    "connectionType": "local",
-    "messagebox": true,
-    "dataSource": "push",
-    "restartAdapters": [
-      "vis-2"
-    ],
-    "adminUI": {
-      "config": "materialize"
-    },
-    "dependencies": [
-      {
-        "js-controller": ">=6.0.11"
-      }
-    ],
-    "globalDependencies": [
-      {
-        "admin": ">=7.0.23"
-      }
+    "objects": [],
+    "instanceObjects": [
+        {
+            "_id": "sendto",
+            "type": "state",
+            "common": {
+                "role": "json",
+                "name": "SendTo Workaround",
+                "type": "string",
+                "read": true,
+                "write": true
+            },
+            "native": {}
+        }
     ]
-  },
-  "native": {
-    "switch_delay": 100,
-    "schedules": {
-      "onOff": []
-    }
-  },
-  "objects": [],
-  "instanceObjects": [
-    {
-      "_id": "sendto",
-      "type": "state",
-      "common": {
-        "role": "json",
-        "name": "SendTo Workaround",
-        "type": "string",
-        "read": true,
-        "write": true
-      },
-      "native": {}
-    }
-  ]
 }
