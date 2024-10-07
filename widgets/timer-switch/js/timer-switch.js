@@ -177,7 +177,7 @@ function onDataIdChange(widgetId, view, newId, attr, isCss, oldId) {
     if (attr) console.log("attr: " + attr);
     if (isCss) console.log("isCss: " + isCss);
     if (oldId) console.log("oldId: " + oldId);
-    if (!vis.views[view].widgets[widgetId].data.bindings) {
+    if (!vis.views[view].widgets[widgetId].tpl === "tplTime-switchDevicePlan") {
         if (newId) {
             vis.views[view].widgets[widgetId].data["oid-enabled"] = newId.replace("data", "enabled");
         }
