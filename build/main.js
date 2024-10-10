@@ -368,6 +368,15 @@ class TimerSwitch extends utils.Adapter {
       native: {}
     });
     await this.setState(`onoff.${id.toString()}.views`, { val: JSON.stringify({}), ack: true });
+    const objState = await this.getObjectAsync(`onoff.${id.toString()}.data`);
+    const state = await this.getStateAsync(`onoff.${id.toString()}.data`);
+    const valState = state && state.val && typeof state.val === "string" ? JSON.parse(state.val) : {};
+    this.log.info("STATE: " + valState.name);
+    this.log.info("STATE1: " + (objState == null ? void 0 : objState.common.name));
+    if (objState && objState.common && valState && valState.name && valState.name != (objState == null ? void 0 : objState.common.name)) {
+      await this.extendObject(`onoff.${id.toString()}`, { common: { name: valState.name } });
+      await this.extendObject(`onoff.${id.toString()}.data`, { common: { name: valState.name } });
+    }
   }
   async createOnOffSchedule(id) {
     await this.setObjectNotExistsAsync("onoff", {
@@ -381,7 +390,7 @@ class TimerSwitch extends utils.Adapter {
     await this.setObjectNotExistsAsync(`onoff.${id.toString()}`, {
       type: "channel",
       common: {
-        name: id.toString(),
+        name: "New Schedule",
         desc: "Created by Adapter"
       },
       native: {}
@@ -389,7 +398,7 @@ class TimerSwitch extends utils.Adapter {
     await this.setObjectNotExistsAsync(`onoff.${id.toString()}.data`, {
       type: "state",
       common: {
-        name: "data",
+        name: "New Schedule",
         read: true,
         write: true,
         type: "string",

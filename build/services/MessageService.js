@@ -73,6 +73,7 @@ class MessageService {
         break;
       case "change-name":
         schedule.setName(data.name);
+        this.changeName(data);
         break;
       case "enable-schedule":
         schedule.setEnabled(true);
@@ -101,6 +102,11 @@ class MessageService {
     }
     this.logger.logDebug("Finished message " + message.command);
     this.currentMessage = null;
+  }
+  async changeName(data) {
+    const state = data == null ? void 0 : data.dataId.split(".");
+    await this.stateService.extendObject(`onoff.${state[3]}`, { common: { name: data == null ? void 0 : data.name } });
+    await this.stateService.extendObject(`onoff.${state[3]}.data`, { common: { name: data == null ? void 0 : data.name } });
   }
   addTrigger(schedule, data) {
     let triggerBuilder;

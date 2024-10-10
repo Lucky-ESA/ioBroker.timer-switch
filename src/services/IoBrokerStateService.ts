@@ -15,6 +15,13 @@ export class IoBrokerStateService implements StateService {
         this.checkTime = Date.now();
     }
 
+    async extendObject(id: string, value: any): Promise<any> {
+        if (!id || !value) {
+            throw new Error("State or Object is empty! - extendObject");
+        }
+        await this.extendObject(id, value);
+    }
+
     setState(id: string, value: string | number | boolean, ack = true): void {
         this.checkId(id);
         this.adapter.setState(id, value, ack);

@@ -32,6 +32,12 @@ class IoBrokerStateService {
     this.checkTime = Date.now();
   }
   adapter;
+  async extendObject(id, value) {
+    if (!id || !value) {
+      throw new Error("State or Object is empty! - extendObject");
+    }
+    await this.extendObject(id, value);
+  }
   setState(id, value, ack = true) {
     this.checkId(id);
     this.adapter.setState(id, value, ack);
