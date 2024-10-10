@@ -45,6 +45,18 @@ export class IoBrokerStateService implements StateService {
         });
     }
 
+    async getState(id: string): Promise<any> {
+        return new Promise((resolve, _) => {
+            this.checkId(id);
+            this.adapter.getForeignState(id, (err, state) => {
+                if (err || state == null) {
+                    this.adapter.log.error(`Requested getState ${id} returned null/undefined!`);
+                }
+                resolve(state?.val);
+            });
+        });
+    }
+
     public delay(ms: number): Promise<void> {
         return new Promise((resolve) => this.adapter.setTimeout(resolve, ms));
     }

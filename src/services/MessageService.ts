@@ -37,6 +37,12 @@ export class MessageService {
         }
         this.currentMessage = message;
         const data: any = message.message;
+        if (message.command === "change-view-dataId") {
+            await this.updateViews(data);
+            this.logger.logDebug("Finished message " + message.command);
+            this.currentMessage = null;
+            return;
+        }
         this.logger.logDebug(`Received ${message.command}`);
         this.logger.logDebug(JSON.stringify(message.message));
         const schedule = this.scheduleIdToSchedule.get(data.dataId);
@@ -128,6 +134,55 @@ export class MessageService {
             throw new Error(`Can not deserialize trigger for schedule of type ${typeof schedule}`);
         }
         schedule.updateTrigger(updated);
+    }
+
+    private async updateViews(data: any): Promise<void> {
+        if (data) {
+            if (data.newId && data.newId.endsWith(".data")) {
+                const path = `${data.newId.replace(".data", "")}.views`;
+                const valView = await this.stateService.getState(path);
+                const newView = typeof valView === "string" ? JSON.parse(valView) : valView;
+                if (newView && newView[data.namespace] && newView[data.namespace][data.prefix]) {
+                    newView[data.namespace][data.prefix][data.widgetId] = data;
+                } else {
+                    newView[data.namespace] = {};
+                    newView[data.namespace][data.prefix] = {};
+                    newView[data.namespace][data.prefix][data.widgetId] = data;
+                }
+                this.stateService.setState(path, JSON.stringify(newView));
+            }
+            if (data.oldId && data.oldId.endsWith(".data")) {
+                const oldPath = `${data.oldId.replace(".data", "")}.views`;
+                const valOldView = await this.stateService.getState(oldPath);
+                const oldView = typeof valOldView === "string" ? JSON.parse(valOldView) : valOldView;
+                if (
+                    oldView &&
+                    oldView[data.namespace] &&
+                    oldView[data.namespace][data.prefix] &&
+                    oldView[data.namespace][data.prefix][data.widgetId]
+                ) {
+                    this.logger.logDebug(
+                        "WObject.keys(oldView[data.namespace]).length: " + Object.keys(oldView[data.namespace]).length,
+                    );
+                    this.logger.logDebug(
+                        "WObject.keys(oldView[data.namespace][data.prefix]).length: " +
+                            Object.keys(oldView[data.namespace][data.prefix]).length,
+                    );
+                    this.logger.logDebug(
+                        "WObject.keys(oldView[data.namespace][data.prefix][data.widgetId]).length: " +
+                            Object.keys(oldView[data.namespace][data.prefix][data.widgetId]).length,
+                    );
+                    if (Object.keys(oldView[data.namespace]).length === 1) {
+                        delete oldView[data.namespace];
+                    } else if (Object.keys(oldView[data.namespace][data.prefix]).length === 1) {
+                        oldView[data.namespace][data.prefix];
+                    } else {
+                        delete oldView[data.namespace][data.prefix][data.widgetId];
+                    }
+                    this.stateService.setState(oldPath, JSON.stringify(oldView));
+                }
+            }
+        }
     }
 
     private changeOnOffSchedulesSwitchedValues(schedule: Schedule, data: any): void {

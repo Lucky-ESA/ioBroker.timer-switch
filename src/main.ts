@@ -5,6 +5,7 @@
 // The adapter-core module gives you access to the core ioBroker functions
 // you need to create an adapter
 import * as utils from "@iobroker/adapter-core";
+import * as fs from "fs";
 import { cancelJob, scheduleJob } from "node-schedule";
 import { getTimes } from "suncalc";
 import { Action } from "./actions/Action";
@@ -38,6 +39,7 @@ export class TimerSwitch extends utils.Adapter {
     private stateService = new IoBrokerStateService(this, this.loggingService);
     private coordinate: Coordinate | undefined;
     private messageService: MessageService | undefined;
+    private widgetControl: ioBroker.Interval | undefined | null;
     public constructor(options: Partial<utils.AdapterOptions> = {}) {
         super({
             ...options,
@@ -48,6 +50,7 @@ export class TimerSwitch extends utils.Adapter {
         // this.on("objectChange", this.onObjectChange.bind(this));
         this.on("message", this.onMessage.bind(this));
         this.on("unload", this.onUnload.bind(this));
+        this.widgetControl = null;
     }
 
     public static getEnabledIdFromScheduleId(scheduleId: string): string {
@@ -63,6 +66,7 @@ export class TimerSwitch extends utils.Adapter {
      */
     private async onReady(): Promise<void> {
         await this.initMessageService();
+        await this.fixViewStructure();
         await this.fixStateStructure(this.config.schedules);
         const record = await this.getStatesAsync(`timer-switch.${this.instance}.*.data`);
         for (const id in record) {
@@ -77,6 +81,12 @@ export class TimerSwitch extends utils.Adapter {
         }
         //this.subscribeStates(`timer-switch.${this.instance}.*`);
         this.subscribeStates(`*`);
+        this.widgetControl = this.setInterval(
+            () => {
+                this.fixViewStructure();
+            },
+            24 * 60 * 1000 * 60,
+        );
     }
 
     /**
@@ -84,6 +94,7 @@ export class TimerSwitch extends utils.Adapter {
      */
     private onUnload(callback: () => void): void {
         this.log.info("cleaning everything up...");
+        this.widgetControl && this.clearInterval(this.widgetControl);
         for (const id in this.scheduleIdToSchedule.keys()) {
             try {
                 this.scheduleIdToSchedule.get(id)?.destroy();
@@ -176,6 +187,177 @@ export class TimerSwitch extends utils.Adapter {
         );
     }
 
+    private async fixViewStructure(): Promise<void> {
+        this.log.info("Start Widget control!");
+        const visFolder = [];
+        const allVisViews: any = {};
+        const newViews: any = {};
+        const allVIS = await this.getObjectViewAsync("system", "instance", {
+            startkey: "system.adapter.vis.",
+            endkey: "system.adapter.vis.\u9999",
+        });
+        const allVIS2 = await this.getObjectViewAsync("system", "instance", {
+            startkey: "system.adapter.vis-2.",
+            endkey: "system.adapter.vis-2.\u9999",
+        });
+        if (allVIS2 && allVIS2.rows) {
+            for (const id of allVIS2.rows) {
+                visFolder.push(id.id.replace("system.adapter.", ""));
+            }
+        }
+        if (allVIS && allVIS.rows) {
+            for (const id of allVIS.rows) {
+                visFolder.push(id.id.replace("system.adapter.", ""));
+            }
+        }
+        if (visFolder.length > 0) {
+            const path = `${utils.getAbsoluteDefaultDataDir()}files/`;
+            for (const vis of visFolder) {
+                allVisViews[vis] = {};
+                const folders = fs.readdirSync(`${path}${vis}/`);
+                for (const folder of folders) {
+                    if (fs.statSync(`${path}${vis}/${folder}`).isDirectory()) {
+                        if (fs.existsSync(`${path}${vis}/${folder}/vis-views.json`)) {
+                            const valViews = fs.readFileSync(`${path}${vis}/${folder}/vis-views.json`, "utf-8");
+                            if (valViews.indexOf("tplTimer-switchDevicePlan") !== -1) {
+                                const templates = JSON.parse(valViews);
+                                allVisViews[vis][folder] = {};
+                                for (const template in templates) {
+                                    if (
+                                        templates[template].widgets &&
+                                        JSON.stringify(templates[template].widgets).indexOf(
+                                            "tplTimer-switchDevicePlan",
+                                        ) !== -1
+                                    ) {
+                                        allVisViews[vis][folder][template] = [];
+                                        for (const widget in templates[template].widgets) {
+                                            if (
+                                                templates[template].widgets[widget].tpl === "tplTimer-switchDevicePlan"
+                                            ) {
+                                                if (
+                                                    templates[template].widgets[widget].data["oid-dataId"] != "" &&
+                                                    !newViews[templates[template].widgets[widget].data["oid-dataId"]]
+                                                ) {
+                                                    newViews[templates[template].widgets[widget].data["oid-dataId"]] =
+                                                        {};
+                                                    newViews[templates[template].widgets[widget].data["oid-dataId"]][
+                                                        vis
+                                                    ] = {};
+                                                    newViews[templates[template].widgets[widget].data["oid-dataId"]][
+                                                        vis
+                                                    ][folder] = {};
+                                                    newViews[templates[template].widgets[widget].data["oid-dataId"]][
+                                                        vis
+                                                    ][folder][widget] = {
+                                                        prefix: folder,
+                                                        namespace: vis,
+                                                        view: template,
+                                                        widgetId: widget,
+                                                        newId: templates[template].widgets[widget].data["oid-dataId"],
+                                                    };
+                                                } else if (
+                                                    templates[template].widgets[widget].data["oid-dataId"] != ""
+                                                ) {
+                                                    if (
+                                                        !newViews[
+                                                            templates[template].widgets[widget].data["oid-dataId"]
+                                                        ][vis]
+                                                    )
+                                                        newViews[
+                                                            templates[template].widgets[widget].data["oid-dataId"]
+                                                        ][vis] = {};
+                                                    if (
+                                                        !newViews[
+                                                            templates[template].widgets[widget].data["oid-dataId"]
+                                                        ][vis][folder]
+                                                    )
+                                                        newViews[
+                                                            templates[template].widgets[widget].data["oid-dataId"]
+                                                        ][vis][folder] = {};
+                                                    newViews[templates[template].widgets[widget].data["oid-dataId"]][
+                                                        vis
+                                                    ][folder][widget] = {
+                                                        prefix: folder,
+                                                        namespace: vis,
+                                                        view: template,
+                                                        widgetId: widget,
+                                                        newId: templates[template].widgets[widget].data["oid-dataId"],
+                                                    };
+                                                }
+                                                if (
+                                                    !templates[template].widgets[widget].data["oid-dataId"] ||
+                                                    templates[template].widgets[widget].data["oid-dataId"] == ""
+                                                ) {
+                                                    this.log.warn(
+                                                        `Missing dataId for ${widget} - ${template} - ${folder} - ${vis}`,
+                                                    );
+                                                }
+                                                if (
+                                                    !templates[template].widgets[widget].data["oid-stateId1"] ||
+                                                    templates[template].widgets[widget].data["oid-stateId1"] == ""
+                                                ) {
+                                                    this.log.warn(
+                                                        `Missing stateId for ${widget} - ${template} - ${folder} - ${vis}`,
+                                                    );
+                                                }
+                                                if (
+                                                    !templates[template].widgets[widget].data["oid-enabled"] ||
+                                                    templates[template].widgets[widget].data["oid-enabled"] == ""
+                                                ) {
+                                                    this.log.warn(
+                                                        `Missing oid-enabledId for ${widget} - ${template} - ${folder} - ${vis}`,
+                                                    );
+                                                }
+                                                if (
+                                                    templates[template].widgets[widget].data["oid-dataId"] != "" &&
+                                                    templates[template].widgets[widget].data["oid-enabled"] != ""
+                                                ) {
+                                                    const splitDataId =
+                                                        templates[template].widgets[widget].data["oid-dataId"].split(
+                                                            ".",
+                                                        );
+                                                    const splitEnabledId =
+                                                        templates[template].widgets[widget].data["oid-enabled"].split(
+                                                            ".",
+                                                        );
+                                                    if (splitDataId.length != 5 || splitDataId[4] != "data") {
+                                                        this.log.warn(
+                                                            `Wrong dataId ${templates[template].widgets[widget].data["oid-dataId"]} for ${widget} - ${template} - ${folder} - ${vis}`,
+                                                        );
+                                                    }
+                                                    if (splitEnabledId.length != 5 || splitEnabledId[4] != "enabled") {
+                                                        this.log.warn(
+                                                            `Wrong dataId ${templates[template].widgets[widget].data["oid-enabled"]} for ${widget} - ${template} - ${folder} - ${vis}`,
+                                                        );
+                                                    }
+                                                    if (splitEnabledId[3] != splitDataId[3]) {
+                                                        this.log.warn(
+                                                            `Wrong dataId and enabledID ${templates[template].widgets[widget].data["oid-dataId"]} - ${templates[template].widgets[widget].data["oid-enabled"]} for ${widget} - ${template} - ${folder} - ${vis}`,
+                                                        );
+                                                    }
+                                                }
+                                                const wid: any = {};
+                                                wid[widget] = templates[template].widgets[widget];
+                                                allVisViews[vis][folder][template].push(wid);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        this.log.debug("newViews: " + JSON.stringify(newViews));
+        if (Object.keys(newViews).length > 0) {
+            for (const stateId in newViews) {
+                const id = stateId.replace("data", "views");
+                await this.setState(id, { val: JSON.stringify(newViews[stateId]), ack: true });
+            }
+        }
+    }
+
     private async fixStateStructure(statesInSettings: { onOff: number[] }): Promise<void> {
         if (!statesInSettings) {
             statesInSettings = { onOff: [] };
@@ -193,6 +375,7 @@ export class TimerSwitch extends utils.Adapter {
                 if (statesInSettings.onOff.includes(id)) {
                     statesInSettings.onOff = statesInSettings.onOff.filter((i) => i !== id);
                     this.log.debug("Found state " + fullId);
+                    this.tempCreateView(id);
                 } else {
                     this.log.debug("Deleting state " + fullId);
                     await this.deleteOnOffSchedule(id);
@@ -209,9 +392,26 @@ export class TimerSwitch extends utils.Adapter {
         await this.delObjectAsync(`onoff.${id.toString()}`, { recursive: true });
     }
 
+    private async tempCreateView(id: number): Promise<void> {
+        await this.setObjectNotExistsAsync(`onoff.${id.toString()}.views`, {
+            type: "state",
+            common: {
+                name: "data",
+                read: true,
+                write: false,
+                type: "string",
+                role: "json",
+                def: `{}`,
+                desc: "Contains all widgets",
+            },
+            native: {},
+        });
+        await this.setState(`onoff.${id.toString()}.views`, { val: JSON.stringify({}), ack: true });
+    }
+
     private async createOnOffSchedule(id: number): Promise<void> {
         await this.setObjectNotExistsAsync("onoff", {
-            type: "channel",
+            type: "device",
             common: {
                 name: "onoff",
                 desc: "Created by Adapter",
@@ -256,6 +456,32 @@ export class TimerSwitch extends utils.Adapter {
                     "triggers":[]
                 }`.replace(/\s/g, ""),
                 desc: "Contains the schedule data (triggers, etc.)",
+            },
+            native: {},
+        });
+        await this.setObjectNotExistsAsync(`onoff.${id.toString()}.views`, {
+            type: "state",
+            common: {
+                name: "data",
+                read: true,
+                write: false,
+                type: "string",
+                role: "json",
+                def: `{}`,
+                desc: "Contains all widgets",
+            },
+            native: {},
+        });
+        await this.setObjectNotExistsAsync(`onoff.${id.toString()}.views`, {
+            type: "state",
+            common: {
+                name: "data",
+                read: true,
+                write: false,
+                type: "string",
+                role: "json",
+                def: `{}`,
+                desc: "Contains all widgets",
             },
             native: {},
         });

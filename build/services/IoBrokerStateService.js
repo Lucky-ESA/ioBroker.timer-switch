@@ -60,6 +60,17 @@ class IoBrokerStateService {
       });
     });
   }
+  async getState(id) {
+    return new Promise((resolve, _) => {
+      this.checkId(id);
+      this.adapter.getForeignState(id, (err, state) => {
+        if (err || state == null) {
+          this.adapter.log.error(`Requested getState ${id} returned null/undefined!`);
+        }
+        resolve(state == null ? void 0 : state.val);
+      });
+    });
+  }
   delay(ms) {
     return new Promise((resolve) => this.adapter.setTimeout(resolve, ms));
   }

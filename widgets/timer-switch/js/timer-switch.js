@@ -32,6 +32,9 @@ vis.binds["timer-switch"] = {
     getElementNameForTriggerType: getElementNameForTriggerType,
     getElementNameForActionType: getElementNameForActionType,
     onDataIdChange: onDataIdChange,
+    onEnabledChange: onEnabledChange,
+    onStateIdChange: onStateIdChange,
+    onConditionStateIdChange: onConditionStateIdChange,
     sendMessage: sendMessage,
     translate: translate,
     addConditionToAction: addConditionToAction,
@@ -69,6 +72,7 @@ function translate(word, widgetid) {
 
 function createOnOffWidget(widgetId, view, data, style) {
     console.debug(`Create on/off widget ${widgetId}`);
+    console.debug(`Create on/off widget projectPrefix ${vis.projectPrefix}`);
     const widgetElement = document.querySelector(`#${widgetId}`);
     if (!widgetElement) {
         console.warn("Widget not found, waiting ...");
@@ -167,17 +171,50 @@ function createOnOffWidget(widgetId, view, data, style) {
 }
 
 /**
+ * Gets triggered by vis editor when enabled id value changes.
+ */
+function onEnabledChange(widgetId, view, newId, attr, isCss, oldId) {
+    console.log(
+        `onEnabledChange: widgetId: ${widgetId} view: ${view} newId: ${newId} attr: ${attr} isCss: ${isCss} oldId: ${oldId}`,
+    );
+}
+
+/**
+ * Gets triggered by vis editor when stateId value changes.
+ */
+function onStateIdChange(widgetId, view, newId, attr, isCss, oldId) {
+    console.log(
+        `onStateIdChange: widgetId: ${widgetId} view: ${view} newId: ${newId} attr: ${attr} isCss: ${isCss} oldId: ${oldId}`,
+    );
+}
+
+/**
+ * Gets triggered by vis editor when ConditionStateId value changes.
+ */
+function onConditionStateIdChange(widgetId, view, newId, attr, isCss, oldId) {
+    console.log(
+        `onConditionStateIdChange: widgetId: ${widgetId} view: ${view} newId: ${newId} attr: ${attr} isCss: ${isCss} oldId: ${oldId}`,
+    );
+}
+
+/**
  * Gets triggered by vis editor when dataId value changes.
  */
 function onDataIdChange(widgetId, view, newId, attr, isCss, oldId) {
-    console.log("onDataIdChange");
-    console.log("widgetId: " + widgetId);
-    console.log("view: " + view);
-    if (newId) console.log("newId: " + newId);
-    if (attr) console.log("attr: " + attr);
-    if (isCss) console.log("isCss: " + isCss);
-    if (oldId) console.log("oldId: " + oldId);
-    if (!vis.views[view].widgets[widgetId].tpl === "tplTime-switchDevicePlan") {
+    console.log(
+        `onDataIdChange: widgetId: ${widgetId} view: ${view} newId: ${newId} attr: ${attr} isCss: ${isCss} oldId: ${oldId}`,
+    );
+    // vis.conn.namespace == vis.0 / vis-2.0
+    const addDataId = {
+        prefix: vis.projectPrefix ? vis.projectPrefix.replace("/", "") : "",
+        namespace: vis.conn.namespace,
+        view: view,
+        widgetId: widgetId,
+        newId: newId,
+        oldId: oldId,
+    };
+    this.sendMessage("change-view-dataId", addDataId);
+    if (vis.conn.namespace.startsWith("vis.")) {
         if (newId) {
             vis.views[view].widgets[widgetId].data["oid-enabled"] = newId.replace("data", "enabled");
         }
