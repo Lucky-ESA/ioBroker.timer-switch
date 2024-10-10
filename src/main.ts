@@ -410,8 +410,6 @@ export class TimerSwitch extends utils.Adapter {
         const objState = await this.getObjectAsync(`onoff.${id.toString()}.data`);
         const state = await this.getStateAsync(`onoff.${id.toString()}.data`);
         const valState = state && state.val && typeof state.val === "string" ? JSON.parse(state.val) : {};
-        this.log.info("STATE: " + valState.name);
-        this.log.info("STATE1: " + objState?.common.name);
         if (objState && objState.common && valState && valState.name && valState.name != objState?.common.name) {
             await this.extendObject(`onoff.${id.toString()}`, { common: { name: valState.name } });
             await this.extendObject(`onoff.${id.toString()}.data`, { common: { name: valState.name } });
