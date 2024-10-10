@@ -66,8 +66,8 @@ export class TimerSwitch extends utils.Adapter {
      */
     private async onReady(): Promise<void> {
         await this.initMessageService();
-        await this.fixViewStructure();
         await this.fixStateStructure(this.config.schedules);
+        await this.fixViewStructure();
         const record = await this.getStatesAsync(`timer-switch.${this.instance}.*.data`);
         for (const id in record) {
             const state = record[id];
