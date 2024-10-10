@@ -19,7 +19,7 @@ export class IoBrokerStateService implements StateService {
         if (!id || !value) {
             throw new Error("State or Object is empty! - extendObject");
         }
-        await this.extendObject(id, value);
+        await this.adapter.extendObject(id, value);
     }
 
     setState(id: string, value: string | number | boolean, ack = true): void {

@@ -36,7 +36,7 @@ class IoBrokerStateService {
     if (!id || !value) {
       throw new Error("State or Object is empty! - extendObject");
     }
-    await this.extendObject(id, value);
+    await this.adapter.extendObject(id, value);
   }
   setState(id, value, ack = true) {
     this.checkId(id);
